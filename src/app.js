@@ -35,7 +35,7 @@ app.use(express.urlencoded({ extended: false}));
 
 //app.use('/products', productsRoutes)
 app.use("/api", indexRoutes)
-app.use('/users', usersRoutes);
+app.use('/api/users', usersRoutes);
 app.use('/api/auth', authRoutes);
 
 export default app;
