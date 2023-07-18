@@ -1,9 +1,11 @@
 import { Router } from 'express'
 import { createUser, getUsers, getUserById } from '../controllers/users.controller.js'
+import { verifyExistingRole, verifyIsUser } from '../middlewares/verifySignup.js';
+
 
 const router = Router();
 
-router.post("/", createUser);
+router.post("/", [verifyIsUser, verifyExistingRole], createUser);
 router.get("/", getUsers);
 router.get('/:userId', getUserById);
 //router.put('/:userId', updateUserById)

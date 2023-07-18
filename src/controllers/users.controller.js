@@ -29,18 +29,23 @@ export const createUser = async (req, res) => {
 
         user.password = await User.encryptPassword(user.password);
         //COPIA DEL USUARIO QUE SE A GUADADO
-        const userSaved = await user.save()
-        //console.log(userSaved);
+        const savedUser = await user.save()
+        //console.log(savedUser);
+
+        const token = jwt.sign({ id: savedUser._id}, SECRET,{
+            expireIn: 86400, //24 horas en segundos. tiempo de duracion 
+        })
 
         //CODIGOS DE ESTADO, PARA DECIRLE AL NAVEGADOR LO QUE ESTA PASANDO
         res.status(200).json({
-            _id: userSaved._id,
-            rut: userSaved.rut,
-            name: userSaved.name,
-            lastName: userSaved.lastName,
-            email: userSaved.email,
-            phone: userSaved.phone,
-            roles: userSaved.roles,
+            _id: savedUser._id,
+            rut: savedUser.rut,
+            name: savedUser.name,
+            lastName: savedUser.lastName,
+            email: savedUser.email,
+            phone: savedUser.phone,
+            roles: savedUser.roles,
+
         });
     } catch (error) {
         console.error(error.message);
@@ -50,7 +55,7 @@ export const createUser = async (req, res) => {
 export const getUsers = async (req, res) => {
     try {
         const users = await User.find();
-        console.log(users);
+        //console.log(users);
         return res.json(users);
 
     } catch (error) {

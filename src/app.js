@@ -15,7 +15,7 @@ const app = express();
 app.set('pkg', pkg);
 
 //Settings
-app.set("port", process.env.PORT || 27017);
+app.set("port", process.env.PORT || 4010);
 app.set("json spaces", 4);
 
 const corsOptions = {};
@@ -28,7 +28,7 @@ app.use(morgan('dev'));
 //ACA LE DECIMOS QUE ENTIENDA LOS DATOS EN FORMATO JSON QUE LLEGAN AL SERVIDOR
 app.use(express.json());
 
-//app.use(helmet());
+app.use(helmet());
 app.use(express.urlencoded({ extended: false}));
 
 

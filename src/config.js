@@ -3,4 +3,4 @@ config();
 
 export const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/restaurante-db'  
 export const SECRET = 'api-restaurante-db';
-export const PORT = process.env.PORT || 27017;
+export const PORT = process.env.PORT || 4010;

@@ -40,8 +40,8 @@ userSchema.statics.encryptPassword = async (password) => {
     return await bcrypt.hash(password, salt); // se crea contraseña cifrada
 }
 
-userSchema.statics.comparePassrowd = async (password, recivedPassword) => {
-    return await bcrypt.compare(password, recivedPassword) //recive contraseña y la compra con la contraseñ ingresada
+userSchema.statics.comparePassword = async (password, recivedPassword) => {
+    return await bcrypt.compare(password, recivedPassword); //recive contraseña y la compra con la contraseñ ingresada
 }
 
 export default mongoose.model("User", userSchema);

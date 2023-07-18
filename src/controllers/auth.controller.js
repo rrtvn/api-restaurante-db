@@ -6,40 +6,74 @@ import { SECRET } from '../config'
 export const signUp = async (req, res) => {
 
     try {
-        const { rut, email, password, roles } = req.body;
+        const { rut, email, password } = req.body;
 
         // creacion de un nuevo Usuario
-        const newUserAuth = new User({
+        const userAuth = new User({
             rut,
             email,
             password,
         });
 
         // revisamos los roles
-        if (roles) {
-            const foundRoles = await Role.find({ $in: roles });
-            newUserAuth.roles = foundRoles.map((role) => role._id);
+        if (userAuth.roles == "user") {
+            console.log('El tipo de usuario es:', userAuth.roles);
         } else {
-            const role = await Role.findOne({ name: "user" });
-            newUserAuth.roles = [role._id];
+            if (userAuth.roles == "admin") {
+                console.log('El tipo de usuario es:', userAuth.roles);
+                //creamos un token
+                const token = jwt.sign({ id: savedUserAuth._id }, SECRET, {
+                    expiresIn: 86400, //24 horas en segundos
+                });
+
+                res.status(200).json({ token });
+            }
         }
-
-        //guradamos el User Object en Mongodb
-        const savedUserAuth = await newUserAuth.save();
-        console.log(savedUserAuth);
-
-        //creamos un token
-        const token = jwt.sign({ id: savedUserAuth._id }, SECRET, {
-            expiresIn: 86400, //24 horas en segundos
-        });
-
-        res.status(200).json({ token });
     } catch (error) {
         res.status(500).json(error.message);
     }
 
 }
 
-export const signIn = async (req, res) => {
-    res.json('signin')
+export const signInHandler = async (req, res) => {
+    try {
+        console.log(req.body.email);
+        const userFound = await User.findOne({email: req.body.email}).populate(
+            'roles'
+        );
+        console.log(userFound);
+        console.log(req.body.email);
+        
+        if (!userFound) return res.status(400).json({message: 'Usuario no encontrado, intente nuevamnete.'});
+       
+        const password = req.body.password;
+        const recivedPassword = userFound.password;
+        console.log(recivedPassword);
+        console.log(password);
+       
+        const validarPassword = await User.comparePassword(
+            password,
+            recivedPassword
+        );
+        console.log(validarPassword);
+
+        if (!validarPassword) {
+            return res.status(401).json({
+                token: null,
+                message: "Invalid Password"
+            })
+            
+        }
+        const token = jwt.sign({ id: userFound._id }, SECRET, {
+            expiresIn: 86400, // 24 hours
+          });
+      
+
+        res.json({ token });
+        console.log(token);
+        
+
+    } catch (error) {
+        console.log(error.message)
+    }
 }
