@@ -4,7 +4,7 @@ import User from '../models/User.js';
 import Role from '../models/Role.js';
 
 export const verifyToken = async (req, res, next) => {
-    let token = req.headers["x-access-token"];
+    const token = req.headers["x-access-token"];
   
     if (!token) return res.status(403).json({ message: "No token provided" });
   
@@ -12,7 +12,7 @@ export const verifyToken = async (req, res, next) => {
       const decoded = jwt.verify(token, SECRET);
       req.userId = decoded.id;
   
-      const user = await User.findById(req.userId, { password: 0 });
+      const user = await User.findById(req.userId, { password: 0 }); // se coloca password=0 porque no queremos que devuelva la password|
       if (!user) return res.status(404).json({ message: "No user found" });
   
       next();
@@ -24,6 +24,7 @@ export const verifyToken = async (req, res, next) => {
   export const isAdmin = async (req, res, next) => {
     try {
       const user = await User.findById(req.userId);
+      console.log(user);
       const roles = await Role.find({ _id: { $in: user.roles } });
   
       for (let i = 0; i < roles.length; i++) {

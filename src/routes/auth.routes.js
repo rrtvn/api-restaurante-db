@@ -1,8 +1,9 @@
 import {Router} from 'express'
 
-import { signInHandler, signUp } from '../controllers/auth.controller.js'; 
-
-import { verifySignup } from '../middlewares/index.js';
+import { signInHandler} from '../controllers/auth.controller.js'; 
+import { authJwt, verifySignup } from '../middlewares/index.js';
+import {validatorSchema} from '../middlewares/validator.js'
+import { loginSchema } from '../schemas/auth.schema.js'
 
 const router = Router();
 
@@ -14,8 +15,8 @@ router.use((req, res, next) => {
     next();
 });
 
-router.post('/signup', signUp);
 
-router.post('/signin',  signInHandler);
+
+router.post('/signin', [validatorSchema(loginSchema), verifySignup.verifyIsUser],  signInHandler);
 
 export default router;

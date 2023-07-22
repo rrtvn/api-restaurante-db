@@ -6,9 +6,11 @@ import cors from "cors";
 import helmet from "helmet";
 import pkg from "../package.json";
 //Routes
-import indexRoutes from './routes/index.routes.js'
-import usersRoutes from './routes/user.routes.js'
-import authRoutes from './routes/auth.routes.js'
+import indexRoutes from './routes/index.routes.js';
+import usersRoutes from './routes/user.routes.js';
+import authRoutes from './routes/auth.routes.js';
+import reservaRoutes from './routes/reserva.routes.js';
+
 
 const app = express();
 
@@ -37,5 +39,6 @@ app.use(express.urlencoded({ extended: false}));
 app.use("/api", indexRoutes)
 app.use('/api/users', usersRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/reserva', reservaRoutes)
 
 export default app;

@@ -9,8 +9,8 @@ export const verifyIsUser = async (req, res, next) => {
         const userFound = await User.findOne({ email : req.body.email }) //Buscasmos el usuario por correo, deberia ser por rut
         console.log(userFound);
 
-        if(userFound){
-            return res.status(400).json({ message: 'Usuario existe.'});
+        if(!userFound){
+            return res.status(400).json({ message: 'Usuario no existe.'});
         }
         
         next();

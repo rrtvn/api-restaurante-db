@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema({
 }, {
     timestamps: true,
     versionKey: false
-})
+});
 
 userSchema.statics.encryptPassword = async (password) => {
     const salt = await bcrypt.genSalt(10); //genSalt es una manera de aplicar una algoritmo '10' veces que se ejecuta el algoritmo
