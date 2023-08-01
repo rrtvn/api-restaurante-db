@@ -1,0 +1,94 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#nav-container{
+    background-color: #2AB280;
+    align-items: center;
+
+}
+.uk-container{
+    background-color: #2AB280;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 150px;
+    color: black;
+}
+
+
+.home,
+.carta,
+.reserva,
+.comoLlegar{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    padding: 10px 20px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.home :hover{
+    color: black;
+}
+
+
+
+.mobile-menu-icon{
+    display: static;
+}
+
+
+
+
+/* RESPONSIVE DESING */
+@media screen and (min-width: 850px){
+    .nav-brand{
+        display: flex;
+        position: absolute;
+        top: 15px;
+        left: 35px;
+    }
+
+    .nav-links{
+        display: none;
+    }
+
+    .nav-links-mobile{
+        position: absolute;
+        display: block;
+        list-style: none;
+        background-color: #8CBEB2;
+        left: 0;
+        top: 75px;
+        transition: all 0.5s ease-out;
+        width: 100%;
+    }
+
+    .home,
+    .carta,
+    .reserva{
+        color: white;
+        text-align: center;
+        padding: 32px;
+        width: 100%;
+        transition: all 0.5s ease;
+    }
+    .mobile-menu-icon{
+        display: block;
+        position: absolute;
+        font-size: 30px;
+        color: white;
+        background-color: #8CBEB2;
+        border: none;
+        outline: none;
+        top: 15px;
+        right: 25px;
+
+    }
+    
+}

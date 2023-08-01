@@ -1,0 +1,9 @@
+@import "primereact/resources/themes/lara-light-indigo/theme.css";  
+@import "primereact/resources/primereact.min.css";     
+
+
+
+body{
+    background-color: #383D42;
+    color: white;
+}

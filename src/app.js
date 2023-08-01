@@ -10,6 +10,7 @@ import indexRoutes from './routes/index.routes.js';
 import usersRoutes from './routes/user.routes.js';
 import authRoutes from './routes/auth.routes.js';
 import reservaRoutes from './routes/reserva.routes.js';
+import platoRoutes from './routes/plato.routes.js';
 
 
 const app = express();
@@ -35,10 +36,11 @@ app.use(express.urlencoded({ extended: false}));
 
 
 
-//app.use('/products', productsRoutes)
+
 app.use("/api", indexRoutes)
 app.use('/api/users', usersRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/reserva', reservaRoutes)
+app.use('/api/plato', platoRoutes)
 
 export default app;
