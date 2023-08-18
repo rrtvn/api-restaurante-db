@@ -1,5 +1,5 @@
 import User from '../models/User.js';
-import { ROLES } from '../models/Role.js'
+import ROLES  from '../models/Role.js'
 
 
 
@@ -20,7 +20,7 @@ export const verifyIsUser = async (req, res, next) => {
 };
 
 export const verifyExistingRole = (req, res, next) => {
-    req.body.roles.find()
+    req.body.roles.find();
 
     if (!req.body.roles) return res.status(400).json({message: 'No roles'});
 

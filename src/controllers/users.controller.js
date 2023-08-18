@@ -1,11 +1,14 @@
+import jwt from 'jsonwebtoken'
 import User from '../models/User.js'
 import Role from '../models/Role.js'
+import config from '../config.js'
 
 export const createUser = async (req, res) => {
 
     try {
-        const { rut, name, lastName, email, phone, password, roles } = req.body; //FALTARIA tipoUser COMO VARIABLE A INGRESAR
+        const { rut, name, lastName, email, phone, password, roles } = req.body//FALTARIA tipoUser COMO VARIABLE A INGRESAR
 
+        console.log(req.body)
         
 
         const user = new User({
@@ -19,33 +22,34 @@ export const createUser = async (req, res) => {
         });
 
         if (roles) {
-            const foundRoles = await Role.find({ name: { $in: roles } });
-            user.roles = foundRoles.map((role) => role._id);
-        } else {
-            const role = await Role.findOne({ name: "user" });
-            user.roles = [role._id];
-        }
+             const foundRoles = await Role.find({ name: roles.name });
+             user.roles = foundRoles.map((role) => role._id);
+        } 
+        //     const role = await Role.findOne({ name: "user" });
+        //     user.roles = [role._id];
+        // }
 
 
         user.password = await User.encryptPassword(user.password);
         //COPIA DEL USUARIO QUE SE A GUADADO
         const savedUser = await user.save()
 
-        const token = jwt.sign({ id: savedUser._id }, SECRET, {
-            expireIn: 86400, //24 horas en segundos. tiempo de duracion 
-        })
+        // const token = jwt.sign({ id: savedUser._id }, config.SECRET , {
+        //     expireIn: 86400, //24 horas en segundos. tiempo de duracion 
+        // })
 
         //CODIGOS DE ESTADO, PARA DECIRLE AL NAVEGADOR LO QUE ESTA PASANDO
-        res.status(200).json({
+          res.status(200).json({
             _id: savedUser._id,
             rut: savedUser.rut,
             name: savedUser.name,
             lastName: savedUser.lastName,
             email: savedUser.email,
             phone: savedUser.phone,
+            password: savedUser.password,
             roles: savedUser.roles,
-
-        });
+        }
+          );
     } catch (error) {
         console.error(error.message);
     }

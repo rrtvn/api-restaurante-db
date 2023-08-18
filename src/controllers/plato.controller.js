@@ -1,39 +1,44 @@
 import jwt from "jsonwebtoken";
 import Plato from "../models/Plato.js";
-import { SECRET } from "../config";
+import Categoria from "../models/Categoria.js";
+import config from "../config";
 
 
 
 export const createPlato = async (req, res) => {
 
     try {
-    const  {nombre, categoria, descipcion, precio, clasificacion, img} = req.body
+    const  {nombre, categorias, descipcion, precio, clasificacion, img} = req.body
 
     const plato = new Plato({
         nombre, 
-        categoria, 
         descipcion, 
         precio, 
         clasificacion, 
         img
     });
 
+    console.log(categorias)
+
+    if(categorias){
+        const foundCategorias = await Categoria.find({ name:  categorias.name });
+        console.log(foundCategorias)
+        plato.categorias = foundCategorias.map((categoria) => categoria._id);
+    }
+
     const nuevoPlato = await plato.save();
 
-    const token = jwt.sign({ id: nuevoPlato._id}, SECRET, {
-        expiresIn: 86400,
-    })
+    
 
     res.status(200).json({
         _id: nuevoPlato._id,
         nombre: nuevoPlato.nombre, 
-        categoria: nuevoPlato.categoria, 
+        categoria: nuevoPlato.categorias, 
         descipcion: nuevoPlato.deletePlatoById, 
         precio: nuevoPlato.precio, 
         clasificacion: nuevoPlato.clasificacion, 
         img: nuevoPlato.img
     });
-    next();
     } catch (error) {
         console.log(error.message)
     }

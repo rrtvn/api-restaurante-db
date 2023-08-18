@@ -1,11 +1,14 @@
 import { Router } from 'express'
-import { createUser, getUsers, getUserById, deleteUserById, updateUserById } from '../controllers/users.controller.js'
-import {authJwt, verifySignup} from '../middlewares/index.js';
+import { createUser} from '../controllers/users.controller.js'
+import { getUsers} from '../controllers/users.controller.js'
+import { getUserById} from '../controllers/users.controller.js'
+import { isAdmin, verifyToken } from '../middlewares/authJwt.js';
+import { verifyExistingRole } from '../middlewares/verifySignup.js';
 
 
 const router = Router();
 
-router.post("/", [verifySignup.verifyIsUser, authJwt.verifyToken ,verifySignup.verifyExistingRole], createUser);
+router.post("/", createUser);
 router.get("/", getUsers);
 router.get('/:userId', getUserById);
 //router.put('/:rut',  updateUserById);

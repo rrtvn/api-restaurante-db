@@ -5,16 +5,18 @@ const platoSchema = new mongoose.Schema({
     nombre:{
         type: String
     },
-    categoria:{
-        type: String
-    },
+
+    categorias: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Categoria",
+    },],
     descripcion:{
         type: String
     },
     precio:{
         type: Number
     },
-    calsificacion:{
+    clasificacion:{
         type: String
     },
     img:{

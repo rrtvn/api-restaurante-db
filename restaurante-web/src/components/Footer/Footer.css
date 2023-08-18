@@ -1,0 +1,25 @@
+
+
+footer{
+    background-color: #008c45;
+    margin: 0px;
+}
+img{
+    width: 150px;
+    height: 150px;
+}
+#footer-bot{
+    margin: 0px 15px 0px 15px;
+}
+#footer-top{
+    margin: 0px 15px 0px 15px;
+}
+
+.link{
+    color: #cd212a;
+}
+
+#divider{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

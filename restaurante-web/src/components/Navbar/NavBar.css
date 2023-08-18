@@ -5,18 +5,35 @@
     box-sizing: border-box;
 }
 #nav-container{
-    background-color: #2AB280;
     align-items: center;
+    background-color: #008c45;
+    height: 150px;
 
 }
+.uk-navbar-nav{
+    margin-top: 25px;
+}
+.uk-navbar{
+    height: 150px;
+}
 .uk-container{
-    background-color: #2AB280;
     display: flex;
     justify-content: space-around;
     align-items: center;
     height: 150px;
     color: black;
 }
+
+.logo-brand .uk-container{
+    position: relative;
+    overflow: visible;
+    display: block;
+}
+
+.logo-brand{
+    width: 150px;
+}
+
 
 
 .home,
@@ -32,15 +49,13 @@
     cursor: pointer;
 }
 
-.home :hover{
-    color: black;
+.home:hover,
+.carta:hover,
+.reserva:hover,
+.comoLlegar:hover{
+    color: #FE4A49;
 }
 
-
-
-.mobile-menu-icon{
-    display: static;
-}
 
 
 

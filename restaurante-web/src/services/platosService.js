@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {API_URL} from '../config.js'
+import {API_URL, API_URL_DOCEKR} from '../config.js'
 
 
 
@@ -7,10 +7,9 @@ class PlatosService {
 
     async getPlatos(){
         try {
-            const resp = axios.get(`${API_URL}/plato`);
-            console.log(resp)
+            const resp = await axios.get(`${API_URL_DOCEKR}/plato`);
             //ESTA RESPUIESTA VIENE CON {status (200), statusText (success), data}
-            return (await resp).data;
+            return  resp.data;
             
         } catch (error) {
             return null;
@@ -18,7 +17,7 @@ class PlatosService {
     }
     async savePlatos(plato){
         try {
-            const resp = await axios.post(`${API_URL}/post`, {
+            const resp = await axios.post(`${API_URL_DOCEKR}/post`, {
                 headers:{
                     'Content-Type': 'application/json',
                     //'Authorization': 'Bearer token'

@@ -11,6 +11,7 @@ import usersRoutes from './routes/user.routes.js';
 import authRoutes from './routes/auth.routes.js';
 import reservaRoutes from './routes/reserva.routes.js';
 import platoRoutes from './routes/plato.routes.js';
+import categoriaRoutes from './routes/categoria.routes.js';
 
 
 const app = express();
@@ -42,5 +43,6 @@ app.use('/api/users', usersRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/reserva', reservaRoutes)
 app.use('/api/plato', platoRoutes)
+app.use('/api/categoria', categoriaRoutes)
 
 export default app;

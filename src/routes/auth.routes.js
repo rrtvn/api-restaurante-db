@@ -1,7 +1,7 @@
 import {Router} from 'express'
 
 import { signInHandler} from '../controllers/auth.controller.js'; 
-import { authJwt, verifySignup } from '../middlewares/index.js';
+import { verifyIsUser } from '../middlewares/verifySignup.js';
 import {validatorSchema} from '../middlewares/validator.js'
 import { loginSchema } from '../schemas/auth.schema.js'
 
@@ -17,6 +17,6 @@ router.use((req, res, next) => {
 
 
 
-router.post('/signin', [validatorSchema(loginSchema), verifySignup.verifyIsUser],  signInHandler);
+router.post('/signin', [validatorSchema(loginSchema), verifyIsUser],  signInHandler);
 
 export default router;

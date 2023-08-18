@@ -29,5 +29,8 @@ Currently, two official plugins are available:
     npm install redux-thunk
     npm install axios
     npm install sweetalert2
+    npm i flowbite 
+    npm i flowbite-react
+    npm i react-icons
 
 ```

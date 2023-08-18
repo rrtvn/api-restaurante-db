@@ -5,6 +5,8 @@ import Role from '../models/Role.js';
 
 export const verifyToken = async (req, res, next) => {
     const token = req.headers["x-access-token"];
+    console.log(token)
+    next();
   
     if (!token) return res.status(403).json({ message: "No token provided" });
   
@@ -15,7 +17,6 @@ export const verifyToken = async (req, res, next) => {
       const user = await User.findById(req.userId, { password: 0 }); // se coloca password=0 porque no queremos que devuelva la password|
       if (!user) return res.status(404).json({ message: "No user found" });
   
-      next();
     } catch (error) {
       return res.status(401).json({ message: "Unauthorized!" });
     }

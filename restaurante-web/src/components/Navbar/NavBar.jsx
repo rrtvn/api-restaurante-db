@@ -11,13 +11,13 @@ export const NavBar = () =>  {
             <div className="uk-navbar-center">
 
                 <div className="uk-navbar-center-left">
-                    <ul className="uk-navbar-nav">
+                    <ul className="uk-navbar-nav" >
                         <NavLink to="/" className='home uk-active' >Inicio</NavLink>
                         <NavLink to="/carta" className='carta uk-active'>Carta</NavLink>
                         
                     </ul>
                 </div>
-                <a className="uk-navbar-item uk-logo" >Logo</a>
+                <img src='src/assets/logo1.png' className='logo-brand box' alt='logo'></img>              
                 <div className="uk-navbar-center-right">
                     <ul className="uk-navbar-nav">
                         <NavLink to="/reserva" className='reserva uk-active'>Reserva</NavLink>

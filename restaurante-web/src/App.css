@@ -1,9 +1,24 @@
 @import "primereact/resources/themes/lara-light-indigo/theme.css";  
 @import "primereact/resources/primereact.min.css";     
+@import '@fontsource-variable/cinzel';
+
 
 
 
 body{
-    background-color: #383D42;
+    
     color: white;
+    
+}
+
+
+.grid-reserva{
+    background-image: url('../src/assets/img2.jpg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin-top: 55px;
+    border-radius: 5px;
+    
+
+
 }

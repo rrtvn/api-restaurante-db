@@ -1,4 +1,4 @@
-import * as React from 'react';
+
 import './CardFood.css'
 import  Card  from '@mui/material/Card';
 import  CardContent  from '@mui/material/CardContent';
@@ -11,7 +11,7 @@ export const CardFood = ({img, title, description, precio}) => {
             <CardMedia
                 className='conteiner-media'
                 sx={{ height: 140 }}
-                image={img}
+                image={'src/' + img}
                 
 
             />
@@ -21,6 +21,9 @@ export const CardFood = ({img, title, description, precio}) => {
                 </Typography>
                 <Typography>
                     {description}
+                </Typography>
+                <Typography>
+                    {precio}
                 </Typography>
             </CardContent>
         </Card>
