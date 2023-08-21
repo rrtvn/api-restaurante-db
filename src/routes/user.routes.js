@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { createUser} from '../controllers/users.controller.js'
+import { createUser, deleteUserById} from '../controllers/users.controller.js'
 import { getUsers} from '../controllers/users.controller.js'
 import { getUserById} from '../controllers/users.controller.js'
 import { isAdmin, verifyToken } from '../middlewares/authJwt.js';
@@ -12,6 +12,6 @@ router.post("/", createUser);
 router.get("/", getUsers);
 router.get('/:userId', getUserById);
 //router.put('/:rut',  updateUserById);
-//router.delete('/:userId', deleteUserById);
+router.delete('/:userId', deleteUserById);
 
 export default router;

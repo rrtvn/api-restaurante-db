@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import { SECRET } from '../config';
 import User from '../models/User.js';
 import Role from '../models/Role.js';
+import Categoria from '../models/Categoria';
 
 export const verifyToken = async (req, res, next) => {
     const token = req.headers["x-access-token"];
@@ -21,6 +22,8 @@ export const verifyToken = async (req, res, next) => {
       return res.status(401).json({ message: "Unauthorized!" });
     }
   };
+
+  
 
   export const isAdmin = async (req, res, next) => {
     try {

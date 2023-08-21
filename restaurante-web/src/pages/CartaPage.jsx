@@ -25,6 +25,7 @@ export const CartaPage = () =>  {
             img={plato.img}
             title={plato.nombre}
             description={plato.descripcion}
+            precio={plato.precio}
 
         ></CardFood>
     ));

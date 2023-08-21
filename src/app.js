@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import cors from "cors";
 import helmet from "helmet";
 import pkg from "../package.json";
+
 //Routes
 import indexRoutes from './routes/index.routes.js';
 import usersRoutes from './routes/user.routes.js';

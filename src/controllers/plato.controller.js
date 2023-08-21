@@ -8,37 +8,37 @@ import config from "../config";
 export const createPlato = async (req, res) => {
 
     try {
-    const  {nombre, categorias, descipcion, precio, clasificacion, img} = req.body
+        const { nombre, categorias, descipcion, precio, clasificacion, img } = req.body
 
-    const plato = new Plato({
-        nombre, 
-        descipcion, 
-        precio, 
-        clasificacion, 
-        img
-    });
+        const plato = new Plato({
+            nombre,
+            descipcion,
+            precio,
+            clasificacion,
+            img
+        });
 
-    console.log(categorias)
+        console.log(categorias)
 
-    if(categorias){
-        const foundCategorias = await Categoria.find({ name:  categorias.name });
-        console.log(foundCategorias)
-        plato.categorias = foundCategorias.map((categoria) => categoria._id);
-    }
+        if (categorias) {
+            const foundCategorias = await Categoria.find({ name: categorias.name });
+            console.log(foundCategorias)
+            plato.categorias = foundCategorias.map((categoria) => categoria._id);
+        }
 
-    const nuevoPlato = await plato.save();
+        const nuevoPlato = await plato.save();
 
-    
 
-    res.status(200).json({
-        _id: nuevoPlato._id,
-        nombre: nuevoPlato.nombre, 
-        categoria: nuevoPlato.categorias, 
-        descipcion: nuevoPlato.deletePlatoById, 
-        precio: nuevoPlato.precio, 
-        clasificacion: nuevoPlato.clasificacion, 
-        img: nuevoPlato.img
-    });
+
+        res.status(200).json({
+            _id: nuevoPlato._id,
+            nombre: nuevoPlato.nombre,
+            categoria: nuevoPlato.categorias,
+            descipcion: nuevoPlato.deletePlatoById,
+            precio: nuevoPlato.precio,
+            clasificacion: nuevoPlato.clasificacion,
+            img: nuevoPlato.img
+        });
     } catch (error) {
         console.log(error.message)
     }
@@ -53,11 +53,23 @@ export const getPlato = async (req, res) => {
     }
 }
 export const getPlatoById = (req, res) => {
-    
+
 }
 export const updatePlatoById = (req, res) => {
-    
+
 }
-export const deletePlatoById = (req, res) => {
-    
+export const deletePlatoById = async (req, res) => {
+
+    try {
+        const { platoId } = req.params;
+        if (!platoId) return res.json({ message: 'Plato ID es requerido' });
+        const findPlato = await Plato.findByIdAndDelete(platoId);
+        res.json({
+            data: findPlato,
+        });
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json({ message: 'Server error'})
+    }
+
 }

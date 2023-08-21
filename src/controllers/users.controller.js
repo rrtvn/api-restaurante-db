@@ -82,8 +82,17 @@ export const updateUserById = async (req, res) => {
     res.status(200).json(updateUser);
 }
 export const deleteUserById = async (req, res) => {
-    const { userId } = req.params._id;
-    console.log(userId);
-    await User.findByIdAndDelete(userId);
-    res.status(204).json();
+    try {
+        const {userId}  = req.params;
+        console.log(userId)
+        if (!userId) return res.json({ message: 'User ID es requerido'});
+        const findUser = await User.findByIdAndDelete(userId)
+        res.json({
+            data: findUser,
+        });
+        
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json({ message: 'Server error.'})
+    }
 }

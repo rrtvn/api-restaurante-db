@@ -1,6 +1,9 @@
 
 import { useForm } from 'react-hook-form';
 import { registrarPlato } from '../../api/auth.js'
+import { Button } from 'primereact/button';
+import { DropDownCategorias } from '../DropDown/DropDownCategorias.jsx';
+
 
 
 export const FormPlato = () => {
@@ -22,6 +25,11 @@ export const FormPlato = () => {
                             className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md" />
                         <label htmlFor="name" className="form-label">Categoria</label>
                         {/* DROPDOWN  */}
+
+                        <DropDownCategorias
+                            
+                        />
+                        
                     </div>
 
                     <div className="DESCRIPCION">
@@ -43,7 +51,9 @@ export const FormPlato = () => {
 
                     </div>
                 </div>
-                <button type='button' className='btn bg-black'></button>
+                <div className="div">
+                    <Button type='button' className='w-full btn-form'></Button>
+                </div>
             </form>
         </div>
 

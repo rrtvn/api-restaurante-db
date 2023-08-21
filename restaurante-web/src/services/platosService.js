@@ -12,7 +12,7 @@ class PlatosService {
             return  resp.data;
             
         } catch (error) {
-            return null;
+            console.error(error)
         }
     }
     async savePlatos(plato){

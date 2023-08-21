@@ -34,8 +34,9 @@ export const IndexPage = () => {
     return (
       <CardFood
         img={plato.img}
-        title={plato.nombre}
+        title={plato.name}
         description={plato.descripcion}
+        precio={plato.precio}
 
       ></CardFood>
     )

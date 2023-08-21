@@ -16,13 +16,13 @@ export const CardFood = ({img, title, description, precio}) => {
 
             />
             <CardContent className='conteiner-content'>
-                <Typography gutterBottom variant='h5' component="div">
+                <Typography gutterBottom variant='h4' color={'black'} component="div">
                     {title}
                 </Typography>
-                <Typography>
+                <Typography gutterBottom variant='h7' color={'black'} component="div">
                     {description}
                 </Typography>
-                <Typography>
+                <Typography gutterBottom variant='h5' color={'black'} component="div">
                     {precio}
                 </Typography>
             </CardContent>

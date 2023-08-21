@@ -1,5 +1,6 @@
 import User from '../models/User.js';
 import ROLES  from '../models/Role.js'
+import Categoria from '../models/Categoria.js';
 
 
 
@@ -18,6 +19,22 @@ export const verifyIsUser = async (req, res, next) => {
         res.status(500).json({ message: error.message});
     }
 };
+
+export const verifyExistingCategoria = async (req, res, next) => {
+    req.body.categorias.find();
+    console.log(req.body)
+    if (!req.body.categorias) return res.status(400).json({message: 'No categorias'});
+
+    for (let i = 0; i < req.body.categorias.length; i++) {
+        if (!Categoria.includes(req.body.categorias[i])){
+            return res.status(400).json({
+                message: `Categoria ${req.body.categorias[i]} no existe`
+            })
+        }
+        
+    }
+
+  }
 
 export const verifyExistingRole = (req, res, next) => {
     req.body.roles.find();
