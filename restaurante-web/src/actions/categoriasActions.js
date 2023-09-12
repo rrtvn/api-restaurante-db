@@ -7,11 +7,15 @@ const cargarCategorias = (categorias) => ({
     payload: categorias
 });
 
+const cargarCategoriasById = (catId) => ({
+    type: types.cargarCategoriasById,
+    payload: catId
+})
+
 export const startCargarCategoria = () => async (dispatch) => {
 
     try {
         const categorias = await categoriasService.getCategorias();
-        console.log(categorias)
         if(categorias){
             dispatch(cargarCategorias(categorias));
         }
@@ -21,3 +25,15 @@ export const startCargarCategoria = () => async (dispatch) => {
     }
 };
 
+export const startCargarCategoriaById = (categoriaId) => async (dispatch) => {
+    try {
+        
+        const catId =  categoriasService.getCategoriasById(categoriaId)
+        if(catId){
+            dispatch(cargarCategoriasById(catId));
+        }
+        return true;
+    } catch (e) {
+        console.error(e)
+    }
+}

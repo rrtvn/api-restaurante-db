@@ -1,28 +1,29 @@
-import {useEffect, useState} from 'react'
+
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import {startCargarCategoria} from '../../actions/categoriasActions'
+import { startCargarCategoria } from '../../actions/categoriasActions'
 
 import { Dropdown } from 'primereact/dropdown';
 
-export const DropDownCategorias = ({categorias}) => {
-    
+export const DropDownCategorias = () => {
     const [selectedCategoria, setSelectedCategoria] = useState(null);
+
     const dispatch = useDispatch();
-    const [categorias] = useSelector(state => state.categorias);
+    const { categorias } = useSelector(state => state.categorias);
 
     useEffect(() => {
-        dispatch(startCargarCategoria);
-    }, [ dispatch, startCargarCategoria]);
-
-
+        dispatch(startCargarCategoria());
+    })
 
     return (
-        <Dropdown value={selectedCategoria}
+        <Dropdown
+            value={selectedCategoria}
             onChange={(e) => setSelectedCategoria(e.value)}
+            onInput={(e) => setSelectedCategoria(e.target.value)}
             options={categorias}
             optionLabel='name'
             placeholder='Seleccione categoria'
-            className='' ></Dropdown>
+            className='w-full bg-zinc-700 text-white' ></Dropdown>
     )
 }
 

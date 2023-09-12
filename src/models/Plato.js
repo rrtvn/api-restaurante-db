@@ -7,17 +7,17 @@ const platoSchema = new mongoose.Schema({
     },
 
     categorias: [{
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.String,
         ref: "Categoria",
     },],
     descripcion:{
         type: String
     },
     precio:{
-        type: Number
+        type: String
     },
     clasificacion:{
-        type: String
+        type: Number
     },
     img:{
         type: String

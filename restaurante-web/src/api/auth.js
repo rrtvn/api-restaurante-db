@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from './axios';
 
 
 
-export const registrarReserva = async () => axios.post('/reserva');
-export const registrarPlato = async () => axios.post('/plato');
+export const regisReservaRequest = async (reserva) => (await axios.post('/reserva', reserva));
+export const registrarPlato = async (plato) => (await axios.post('/plato', plato));

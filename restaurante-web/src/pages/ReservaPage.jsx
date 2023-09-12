@@ -1,26 +1,38 @@
-//import React from 'react';
-import { Container, Box } from '@mui/material';
+
+import { useDispatch } from 'react-redux';
+import { startGuardarReserva } from '../actions/reservaActions';
 import { FormReserva } from '../components/Form/FormReserva';
+import {  Box } from '@mui/material';
 import Grid from '@mui/material/Grid';
 
 export const ReservaPage = () => {
+  
 
+   const dispatch = useDispatch();
+
+   const addReserva = async(reserva) => {
+      let res = await dispatch(startGuardarReserva(reserva))
+      if(res != null){
+         console.log(res)
+      }
+   }
 
    return (
 
       
 
-         <Container className='h-screen'>
-            <Box className="w-full mb-10">
+         <div className=''>
+            
+            <Box  className="w-full mb-20 py-20 px-60">
                <Grid container  className=''>
                   <Grid xs={2} md={5}>
-                     <FormReserva />
+                     <FormReserva onAgregar={addReserva} />
                   </Grid>
                   <Grid className='grid-reserva ' xs={2} md={7}>
                   </Grid>
                </Grid>
             </Box>
-         </Container>
+         </div>
       
 
 

@@ -29,7 +29,7 @@ export const getCategoria = async (req, res) => {
     }
 }
 
-export const deleteCategoria = async (req, res) => {
+export const deleteCategoriaById = async (req, res) => {
     try {
         const { categoriaId } = req.params;
         if (!categoriaId) return res.json({ message: 'Categoria ID es requerido' })

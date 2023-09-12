@@ -1,20 +1,18 @@
 body,html{
-    height: 100%;
+    
     margin: 0;
 }
 
 .row{
-    height: 50%;
+    
 }
 
 .section{
-    background-image:  url('../../assets/img-index.jpg') ;
-    display: flex;
-    height: 580px;
+    background-image:  url('../../assets/Otras/rest1.jpg') ;
+    height: 720px;
 
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100%;
-    position: relative;
     
 }

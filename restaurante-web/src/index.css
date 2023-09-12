@@ -6,8 +6,7 @@
 
 #root{
     margin: 0;
-    display: block;
-    background-color:  #122932;
+    background-color: #f4f5f0;
 }
 
 .color1-nav {color: #122932;}
@@ -15,7 +14,8 @@
 .color3 {color: #904E55;}
 .color4 {color: #0c7723;}
 .color5 {color: #599a00;}
+.color10 {color: #360000;}
 /* colores bandera de italia */
-.color5 {color: #008c45;}
-.color5 {color: #cd212a;}
-.color5 {color: #f4f5f0;}
+.color6 {color: #008c45;}
+.color7 {color: #cd212a;}
+.color8 {color: #f4f5f0;}

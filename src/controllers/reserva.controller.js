@@ -4,21 +4,21 @@ import { SECRET } from '../config.js';
 
 export const crearReserva = async (req, res, next) => {
     try {
-        const { nombre, apellido, rut, email, telefono, cantPersonas, horaReserva, fechaReserva } = req.body
+        const { fullName, rut, email, telefono, cantPersonas, selectedHora, date } = req.body
 
-        
-
+        const hrReserva = selectedHora.name
+ 
         const reserva = new Reserva({
-            nombre,
-            apellido,
+            fullName,
             rut,
             email,
             telefono : parseInt(telefono),
             cantPersonas : parseInt(cantPersonas),
-            horaReserva,
-            fechaReserva
+            horaReserva : String(hrReserva),
+            fechaReserva : Date(date)
         });
-        console.log(reserva.telefono)
+        console.log(hrReserva)
+        console.log(date)
 
         const savedReserva = await reserva.save();
 
@@ -28,8 +28,7 @@ export const crearReserva = async (req, res, next) => {
 
         res.status(200).json({ 
             _id: savedReserva._id,
-            nombre: savedReserva.nombre,
-            apellido: savedReserva.apellido,
+            fullName: savedReserva.fullName,
             rut: savedReserva.rut,
             email: savedReserva.email,
             telefono: savedReserva.telefono,
@@ -62,11 +61,20 @@ export const modificarReserva = async (req, res) => {
     res.status(200).json(updateReserva);
 
 }
-export const eliminarReserva = async (req, res) => {
+export const deleteReservaById = async (req, res) => {
 
-    const {reservaId} = req.params._id;
-    await Reserva.findByIdAndDelete(reservaId);
-    res.status(204).json();
+    try {
+        const {reservaId} = req.params;
+        if (!reservaId) return res.json({message: 'Reserva Id es requerido'})
+        const findReser = await Reserva.findByIdAndDelete(reservaId);
+        res.json({
+            data: findReser,
+        })
+        
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json({ message: 'Server error'})
+    }
 }
 
 

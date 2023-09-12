@@ -13,7 +13,7 @@ body{
 
 
 .grid-reserva{
-    background-image: url('../src/assets/img2.jpg');
+    background-image: url('../src/assets/Otras/form1.jpg');
     background-size: 100%;
     background-repeat: no-repeat;
     margin-top: 55px;
@@ -22,3 +22,11 @@ body{
 
 
 }
+
+.card-cat{
+    min-width: 160px;
+}
+.layout{
+    display: grid;
+}
+

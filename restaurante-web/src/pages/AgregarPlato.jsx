@@ -1,26 +1,36 @@
-import Box  from '@mui/material/Box';
-import  Container  from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
+import { useDispatch } from 'react-redux';
+import { startGuardarPlatos } from '../actions/platosActions';
 import { FormPlato } from '../components/Form/FormPlato';
+import Box  from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import { TablePlatos } from '../components/Table/TablePlatos';
 
 
 export const AgregarPlato = () => {
 
+    const dispatch = useDispatch();
+
+    const addPlato = async(plato) =>{
+        let res = await dispatch(startGuardarPlatos(plato));
+        if (res != null) {
+            console.log(res)
+        }
+    }
+
 
     return (
-        <Container className='h-screen'>
-            <Box className='w-full mb-10'>
-                <Grid >
-                    <Grid >
-                        <FormPlato></FormPlato>
+        <div>
+            <Box className='w-full mb-20 py-20 px-60'>
+                <Grid container >
+                    <Grid  xs={2} md={5} >
+                        <FormPlato onAgregar={addPlato}></FormPlato>
                     </Grid>
-                    <Grid className='grid-table'>
-                        <TablePlatos></TablePlatos>
+                    <Grid xs={2} md={7} className='grid-table py-14 pl-10'>
+                        <TablePlatos className="py-10"></TablePlatos>
                     </Grid>
                 </Grid>
             </Box>
-        </Container>
+        </div>
     )
 }
 

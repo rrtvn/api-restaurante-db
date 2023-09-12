@@ -2,10 +2,7 @@ import mongoose from "mongoose";
 
 const reservaSchema = new mongoose.Schema({
 
-    nombre:{
-        type: String,
-    },
-    apellido:{
+    fullName:{
         type: String,
     },
     rut:{

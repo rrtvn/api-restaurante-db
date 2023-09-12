@@ -7,23 +7,27 @@ class PlatosService {
 
     async getPlatos(){
         try {
-            const resp = await axios.get(`${API_URL_DOCEKR}/plato`);
+            const resp = await axios.get(`${API_URL}/plato` ,{
+                headers:{
+                    'Content-Type': 'application/json',
+                }
+            });
             //ESTA RESPUIESTA VIENE CON {status (200), statusText (success), data}
+            
             return  resp.data;
             
         } catch (error) {
             console.error(error)
         }
     }
-    async savePlatos(plato){
+    async savePlato(plato){
         try {
-            const resp = await axios.post(`${API_URL_DOCEKR}/post`, {
+            const resp = await axios.post(`${API_URL}/plato`, plato, {
                 headers:{
                     'Content-Type': 'application/json',
-                    //'Authorization': 'Bearer token'
                 }
             })
-            return resp.data;
+            return resp.arguments['0'];
         } catch (error) {
             return null;
         }

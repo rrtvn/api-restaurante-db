@@ -2,12 +2,15 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { startCargarPlato } from "../../actions/platosActions";
 import {
+    Paper,
     Table
     , TableBody
     , TableCell, TableContainer
     , TableHead,
     TableRow
 } from "@mui/material"
+
+import "../Table/TablePlatos.css"
 
 
 export const TablePlatos = () => {
@@ -16,32 +19,37 @@ export const TablePlatos = () => {
 
     useEffect(() => {
         dispatch(startCargarPlato());
-    }, [dispatch, startCargarPlato])
+    }, )
 
+    
+
+      
 
     const tablePlatos = platos.map((plato) => (
         <TableRow
-            key={platos._id}
-            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            key={plato._id}
+            
         >
-            <TableCell>{plato.title}</TableCell>
-            <TableCell></TableCell>
-            <TableCell></TableCell>
-            <TableCell></TableCell>
-            <TableCell></TableCell>
+            <TableCell align="left" component="th" scope="row" className="txt-table">{plato.nombre}</TableCell>
+            <TableCell  align="right">{plato.descripcion}</TableCell>
+            <TableCell  align="right">{plato.categorias}</TableCell>
+            <TableCell  align="right">{plato.precio}</TableCell>
+            <TableCell align="right">{plato.clasificacion}</TableCell>
+            <TableCell align="right">{plato.img}</TableCell>
         </TableRow>
     ));
 
     return (
-        <TableContainer>
+        <TableContainer component={Paper}>
             <Table>
                 <TableHead>
                     <TableRow>
-                        <TableCell>Nombre plato</TableCell>
-                        <TableCell>Categoria</TableCell>
-                        <TableCell>Precio</TableCell>
-                        <TableCell>Clasificacion</TableCell>
-                        <TableCell>Imagen</TableCell>
+                        <TableCell align="right" >Nombre plato</TableCell>
+                        <TableCell align="right" >Descripcion</TableCell>
+                        <TableCell align="right" >Categoria</TableCell>
+                        <TableCell align="right" >Precio</TableCell>
+                        <TableCell align="right" >Clasificacion</TableCell>
+                        <TableCell align="right" >Imagen</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

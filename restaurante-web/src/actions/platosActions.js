@@ -24,14 +24,11 @@ export const startCargarPlato = () => async (dispatch)=>{ //es una funcion que r
     }
 };
 
-export const startGuardarPlatos = (plato) => async (dispatch)=> {
-    try {
-        const platoNuevo = await platosService.guardarPlato(plato);
-        if (platoNuevo) {
-            dispatch(guardarPlato(plato));
-            return true;
+export const startGuardarPlatos = (plato) => {
+    return async(dispatch)=>{
+        plato = await platosService.savePlato(plato);
+        if(plato != null ){
+            dispatch(guardarPlato(plato))
         }
-    } catch (e) {
-        return null;
     }
 }

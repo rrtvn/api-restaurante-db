@@ -8,22 +8,28 @@ import config from "../config";
 export const createPlato = async (req, res) => {
 
     try {
-        const { nombre, categorias, descipcion, precio, clasificacion, img } = req.body
+        const { nombre, descripcion, precio, selectedCategoria, rating, image } = req.body
+
+        const categoria = selectedCategoria.name;
+
+        //NOS ASEGURAMOS QUE LA IMAGEN SE GUARDE EN LA BD 
+        //SIN EL C://FAKEPATH//
+        const pathImg = image.replace(/^.*\\/,"");
 
         const plato = new Plato({
             nombre,
-            descipcion,
+            descripcion,
             precio,
-            clasificacion,
-            img
+            clasificacion: String(rating),
+            img: String(pathImg),
         });
 
-        console.log(categorias)
+        console.log(categoria)
 
-        if (categorias) {
-            const foundCategorias = await Categoria.find({ name: categorias.name });
+        if (categoria) {
+            const foundCategorias = await Categoria.find({ name: categoria });
             console.log(foundCategorias)
-            plato.categorias = foundCategorias.map((categoria) => categoria._id);
+            plato.categorias = foundCategorias.map((cat) => String(cat.name));
         }
 
         const nuevoPlato = await plato.save();
@@ -33,8 +39,8 @@ export const createPlato = async (req, res) => {
         res.status(200).json({
             _id: nuevoPlato._id,
             nombre: nuevoPlato.nombre,
-            categoria: nuevoPlato.categorias,
-            descipcion: nuevoPlato.deletePlatoById,
+            categorias: nuevoPlato.categorias,
+            descripcion: nuevoPlato.descripcion,
             precio: nuevoPlato.precio,
             clasificacion: nuevoPlato.clasificacion,
             img: nuevoPlato.img

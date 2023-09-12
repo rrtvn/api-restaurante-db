@@ -32,5 +32,6 @@ Currently, two official plugins are available:
     npm i flowbite 
     npm i flowbite-react
     npm i react-icons
+    npm install react-id-swiper@latest swiper@latest
 
 ```

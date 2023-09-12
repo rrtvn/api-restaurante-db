@@ -4,6 +4,7 @@ export const CATEGORIAS = ["Fondos", "Pizzas", "Antipasti", "Cocktail", "Bebidas
 const categoriaSchema = new mongoose.Schema(
     {
         name: String,
+
     },
     {
         versionKey: false,

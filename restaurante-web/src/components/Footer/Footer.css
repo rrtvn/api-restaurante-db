@@ -1,7 +1,7 @@
 
 
 footer{
-    background-color: #008c45;
+    background-color:  #360000;
     margin: 0px;
 }
 img{
@@ -22,4 +22,8 @@ img{
 #divider{
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+#img-footer{
+    min-width: 220px;
 }

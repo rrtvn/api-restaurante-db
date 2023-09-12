@@ -15,6 +15,8 @@ import platoRoutes from './routes/plato.routes.js';
 import categoriaRoutes from './routes/categoria.routes.js';
 
 
+
+
 const app = express();
 
 app.set('pkg', pkg);
@@ -23,7 +25,11 @@ app.set('pkg', pkg);
 app.set("port", process.env.PORT || 4010);
 app.set("json spaces", 4);
 
-const corsOptions = {};
+const corsOptions = {
+    origin:'http://localhost:4010', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200
+};
 app.use(cors());
 
 

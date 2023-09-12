@@ -12,14 +12,15 @@ export const FooterContent = () => {
   return (
 
 
-    <footer className="max-w-full">
+    <footer className="max-w-full ">
       <div className="mx-6 min-w-max max-w-full p-4 py-6 lg:py-8">
         <Grid className="flex static" spacing={3}>
           <Grid item xs>
             <a href="https://nvrrt.cl/" className="">
               <img
-                src="src/assets/logo1.png"
-                className="mr-28 max-w-xs   ml-28"
+                id="img-footer"
+                src="src/assets/Logos/logo4.png"
+                className="mr-28   ml-28"
                 alt="Restaurante Logo"
               />
             </a>
@@ -66,11 +67,11 @@ export const FooterContent = () => {
         </Grid>
         <Divider component="div" id="divider" className=" my-10" />
         <Grid container className="">
-          <Grid item xs={9}>
+          <Grid className="mx-40" item xs>
 
-          <Box gridColumn="">
-            <span className="text-sm mr-80 sm:text-center text-gray-400">© 2023 Nvrrt™ All Rights Reserved.</span>
-          </Box>
+            <Box gridColumn="">
+              <span className="text-sm mr-80 sm:text-center text-gray-400">© 2023 Nvrrt™ All Rights Reserved.</span>
+            </Box>
           </Grid>
           <Grid item xs={1} className="" >
             <Box className="flex xs   space-x-5" >
