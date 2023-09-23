@@ -58,8 +58,18 @@ export const getPlato = async (req, res) => {
         console.error(error.message)
     }
 }
-export const getPlatoById = (req, res) => {
-
+export const getPlatoByCat = async (req, res) => {
+    try {
+        const {catName} = req.body;
+        if(!catName) return res.json({message: 'Nombre de categoria es requerido'})
+        const findPlatoByCat =  await Plato.find({categorias: catName.name})
+        console.log(findPlatoByCat['0'])
+        res.json({
+            data: findPlatoByCat,
+        })
+    } catch (error) {
+        console.error(error.message)
+    }
 }
 export const updatePlatoById = (req, res) => {
 

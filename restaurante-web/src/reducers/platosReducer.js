@@ -1,7 +1,8 @@
 import { types } from "../actions/types";
 
 const initialState = {
-    platos: []
+    platos: [],
+    platosCat: []
 };
 
 
@@ -13,6 +14,8 @@ export const platosReducer = (state=initialState, action) =>{
         case types.guardarPlatos:
             return { platos:[...state.platos,action.payload]}; //...state.platos -> destructuracion del arreglo
         //TODO: Falta la de eliminacion, actualizacion en caso de utilizarse
+        case types.cargarPlatosByCat:
+            return {platosCat:action.payload};
         default:
             return state;    
     }

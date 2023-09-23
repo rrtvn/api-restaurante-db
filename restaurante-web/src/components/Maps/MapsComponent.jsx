@@ -3,14 +3,18 @@ import { useCallback, useState } from 'react';
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 import { API_KEY } from '../../config';
 
+import './MapsComponent.css'
+
 const containerStyle = {
   width: '500px',
   height: '500px'
+  
 };
 
 const center = {
   lat: -32.9409205,
-  lng: -71.4153275
+  lng: -71.4153275,
+  zoom: 8
 };
 
 export const  MapsComponent = () => {
@@ -35,12 +39,13 @@ export const  MapsComponent = () => {
 
 
   return isLoaded ? (
-    <GoogleMap
+    <GoogleMap 
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={13}
+        zoom={8}
         onLoad={onLoad}
         onUnmount={onUnmount}
+        
     >
     <Marker label={"Reserva Añañucas"} onLoad={setMap} position={center}></Marker>
     <></>

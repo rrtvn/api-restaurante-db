@@ -1,12 +1,14 @@
-import { Card } from "@mui/material"
+import { Card, CardActionArea } from "@mui/material"
 
-export const CardCategorias = ({ name }) => {
+export const CardCategorias = ({ name, onClick }) => {
 
 
 
 
   return (
-    <Card className="card-cat"
+    <CardActionArea onClick={onClick} >
+      
+      <Card className="card-cat"
       sx={{
         minWidth: 85
         , minHeight: 120
@@ -21,6 +23,8 @@ export const CardCategorias = ({ name }) => {
         {name}
       </p>
     </Card>
+    </CardActionArea>
+    
   )
 }
 

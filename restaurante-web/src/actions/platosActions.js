@@ -10,6 +10,10 @@ const cargarPlatos = (platos) => ({  //recibe arreglo de mediciones
     type: types.cargarPlatos,
     payload: platos
 });
+const cargarPlatosByCat = (platosCat) => ({  //recibe arreglo de mediciones
+    type: types.cargarPlatosByCat,
+    payload:  platosCat
+});
 
 export const startCargarPlato = () => async (dispatch)=>{ //es una funcion que retorna una funcion asincronica que recibe un dispatch. dispatch es un objeto que perimte lanzar acciones en react
 
@@ -30,5 +34,18 @@ export const startGuardarPlatos = (plato) => {
         if(plato != null ){
             dispatch(guardarPlato(plato))
         }
+    }
+}
+
+export const startCargarPlatoByCat = (cat) => async (dispatch) => {
+    console.log(cat)
+    try {
+        const platosCat = await platosService.getPlatosByCat(cat)
+        if(platosCat){
+            dispatch(cargarPlatosByCat(platosCat))
+        }
+        return true
+    } catch (error) {
+        return false
     }
 }

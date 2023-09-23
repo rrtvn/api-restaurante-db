@@ -9,7 +9,7 @@ export const CardFood = ({img, title, categorias, description, precio}) => {
     return (
         <Card className="card-conteiner" sx={{ maxWidth: 345 }}>
             <CardMedia
-                className='conteiner-media'
+                className='conteiner-media relative'
                 sx={{ height: 275 }}
                 image={'src/assets/Platos/' + img}
                 

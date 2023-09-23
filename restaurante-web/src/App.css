@@ -3,12 +3,17 @@
 @import '@fontsource-variable/cinzel';
 
 
-
+@import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
 
 body{
     
     color: white;
     
+}
+p{
+    font-family: 'Cairo', sans-serif;
+    color: black;
+    font-weight: bold;
 }
 
 
@@ -23,10 +28,16 @@ body{
 
 }
 
+
 .card-cat{
     min-width: 160px;
 }
 .layout{
     display: grid;
 }
+
+.swiper-slide{
+    width: 100%;
+}
+
 

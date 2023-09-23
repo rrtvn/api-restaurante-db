@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import { createPlato, deletePlatoById, getPlato} from '../controllers/plato.controller.js'
+import { createPlato, deletePlatoById, getPlatoByCat, getPlato} from '../controllers/plato.controller.js'
 import { validatorSchema } from '../middlewares/validator.js'
 import { registerPlatoSchema } from '../schemas/auth.schema.js'
 
@@ -18,7 +18,7 @@ router.post('/', createPlato)
 
 router.get('/', getPlato) 
 
-//router.get('/:PlatoId', getPlatoById) 
+router.get('/:categorias', getPlatoByCat) 
 
 //router.put('/:PlatoId', updatePlatoById)
 

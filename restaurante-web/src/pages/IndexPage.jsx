@@ -1,18 +1,27 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { startCargarPlato } from '../actions/platosActions';
-import { CardFood } from '../components/CardFood/CardFood';
 
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 import { ImgIndex } from '../components/ImgIndex/ImgIndex';
 
 import { Carousel } from 'primereact/carousel'
-import { Grid, Typography } from '@mui/material';
+import { Grid, Typography, colors } from '@mui/material';
 import { MapsComponent } from '../components/Maps/MapsComponent';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectFade, Navigation, Pagination } from 'swiper/modules';
+
+
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+
 import  '../config.js'
-import { API_KEY } from '../config.js';
+import CardFoodIndx from '../components/CardFood/CardFoodIndx';
+//import { API_KEY } from '../config.js';
 
 
 
@@ -21,27 +30,38 @@ import { API_KEY } from '../config.js';
 export const IndexPage = () => {
 
 
-
+  const [swiperRef, setSwiperRef] = useState(null);
   const dispatch = useDispatch();
   const { platos } = useSelector(state => state.platos);
+
+  const [slides, setSlides] = useState(
+    platos.map((plato) =>  <CardFoodIndx
+    key={plato._id}
+    img={plato.img}
+    title={plato.nombre}
+    categorias={plato.categorias}
+    description={plato.descripcion}
+
+  ></CardFoodIndx>)
+);
 
   useEffect(() => {
     dispatch(startCargarPlato());
   }, [dispatch, startCargarPlato].slice(0,9));
 
 
-  const cardFood = (plato) => {
-    return (
-      <CardFood
-        img={plato.img}
-        title={plato.nombre}
-        categorias={plato.categorias}
-        description={plato.descripcion}
-        precio={"$ " + plato.precio}
+  // const cardFood = (plato) => {
+  //   return (
+  //     <CardFood
+  //       img={plato.img}
+  //       title={plato.nombre}
+  //       categorias={plato.categorias}
+  //       description={plato.descripcion}
+  //       precio={"$ " + plato.precio}
 
-      ></CardFood>
-    )
-  }
+  //     ></CardFood>
+  //   )
+  // }
 
   return (
     <div >
@@ -53,29 +73,50 @@ export const IndexPage = () => {
       <hr></hr>
       {/* CARRUSEL PLATOS */}
       <section className='my-8 mx-5'>
-        <Box >
-          <Carousel value={platos} numVisible={3} 
+        <Box className="box-map">
+          {/* <Carousel value={platos} numVisible={3} 
             numScroll={3} itemTemplate={cardFood}
             circular
-          ></Carousel>
+          ></Carousel> */}
+          <Swiper
+            className='relative'
+            modules={[EffectFade, Navigation, Pagination]}
+            onSwiper={setSwiperRef}
+            centeredSlides={true}
+            slidesPerView={1}
+            spaceBetween={30}
+            effect={'fade'}
+            navigation={true}
+            
+          >
+            {slides.map((slidePlato, index) => (
+              <SwiperSlide key={slidePlato} virtualIndex={index} >
+                {slidePlato}
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </Box>
       </section>
       <hr></hr>
 
       {/* MAP */}
-      <section className='.color1 relative h-auto'>
-        <Grid className='block  ' container>
+      <section className=' relative h-auto'>
+        <Grid container   className=' px-40 py-10' >
 
-          <Grid className='py-10 px-28 '  item xs={6} md={6}>
-            <MapsComponent className=" items-center"/>
+          <Grid className='  px-20' xs md={4} item >
+            <MapsComponent  className="relative "/>
           </Grid >
-          <Divider component="Grid"  orientation="vertical" flexItem></Divider>
-          <Grid className='py-10 px-5'  item xs={6} md={5}>
+          <Divider   orientation='vertical' />
+          <Grid className='px-20 border ' xs md item >
 
-            <Typography variant='h3' className='pl-40'>¿Como Llegar?</Typography>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus, commodi pariatur. 
+          <h1 className='text-center my-10 text-5xl'>Como puedes llegas a nuestro resturante?</h1>
+          <hr />
+            <p  className='text-emerald-950 py-20 text-2xl'>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus, commodi pariatur. 
               Quaerat aspernatur incidunt explicabo nemo itaque maxime aliquam, 
-              deserunt et adipisci nostrum saepe vel aut rerum, officia error commodi?</p>
+              deserunt et adipisci nostrum saepe vel aut rerum, officia error commodi?
+            </p>
+            
           </Grid>
 
         </Grid>

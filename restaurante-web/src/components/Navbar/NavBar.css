@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
 
 *{
     margin: 0;
@@ -15,6 +16,9 @@
     float: left;
     
 
+}
+span{
+    font-family: 'Cairo', sans-serif;
 }
 
 
@@ -42,11 +46,12 @@
 .comoLlegar{
     text-decoration: none;
     color: white;
-    font-size: 20px;
+    font-size: 25px;
     text-align: center;
     padding: 10px 20px;
     width: 100%;
     cursor: pointer;
+    font-family: 'Cairo', sans-serif;
 }
 
 .home:hover,

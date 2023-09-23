@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {API_URL, API_URL_DOCEKR} from '../config.js'
+import {API_URL} from '../config.js'
 
 
 
@@ -30,6 +30,27 @@ class PlatosService {
             return resp.arguments['0'];
         } catch (error) {
             return null;
+        }
+    }
+
+    async getPlatosByCat(cat){
+
+        const a = cat;
+        console.log(a);
+
+        
+        try {
+            const resp = await axios.get(`${API_URL}/plato/${cat}` , {
+                headers:{
+                    'Content-Type': 'application/json',
+                },
+                params:{
+                    name: cat
+                }
+            })
+            return resp.data;
+        } catch (error) {
+            console.error(error)
         }
     }
 }
