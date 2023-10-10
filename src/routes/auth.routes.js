@@ -17,6 +17,6 @@ router.use((req, res, next) => {
 
 
 
-router.post('/signin', [validatorSchema(loginSchema), verifyIsUser],  signInHandler);
+router.post('/signin', [validatorSchema(loginSchema) ], signInHandler );
 
 export default router;

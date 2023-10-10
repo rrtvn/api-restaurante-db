@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { createContext, useContext, useState } from "react";
-import {regisReservaRequest} from '../api/auth'
+import Cookies from 'js-cookie'
+import { authReducer } from "../reducers/authReducer";
+import { useReducer } from "react";
 
 const AuthContext = createContext();
 
@@ -12,11 +14,27 @@ export const useAuth = () => {
 }
 
 export const AuthProvider = ({ children }) => {
-    const [reserva, setReserva] = useState(null);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+
     const [errors, setErrors] = useState(false);
 
-    
+
+
+    //AUI SE DEFINE ESTADO INICIAL
+
+    const initialState = {
+        user: null,
+        isAuthenticated: false,
+        loading: true
+    };
+
+
+
+    // const [reserva, setReserva] = useState(null);
+
+    //USAMOS USEREDUCER PARA MANEJAR EL ESTADO DE AUTENTICACION
+    const [authState, dispatch] = useReducer(authReducer, initialState);
+
+
 
     useEffect(() => {
         if (errors.length > 0) {
@@ -25,38 +43,27 @@ export const AuthProvider = ({ children }) => {
             }, 5000);
             return () => clearTimeout(timer);
         }
-    })
+    }, [errors])
 
-    const regisReserva = async (reserva) => {
-        try {
-            const res = await regisReservaRequest(reserva);
-            if (res.status === 200){
-                setReserva(res.data);
-                setIsAuthenticated(true);
-            }
-        } catch (error) {
-            console.log(error);
-            setErrors(error);
-        }
-    }
+    // const regisReserva = async (reserva) => {
+    //     try {
+    //         const res = await regisReservaRequest(reserva);
+    //         if (res.status === 200){
+    //             setReserva(res.data);
+    //             setIsAuthenticated(true);
+    //         }
+    //     } catch (error) {
+    //         console.log(error);
+    //         setErrors(error);
+    //     }
+    // }
 
-   
-
-    
 
 
     return (
-        <AuthContext.Provider
-            value={{
-                reserva,
-                regisReserva,
-                isAuthenticated,
-                errors
-            }}
-        >
+        <AuthContext.Provider value={{ authState, dispatch }}>
             {children}
         </AuthContext.Provider>
     );
 };
 
-export default AuthContext; 

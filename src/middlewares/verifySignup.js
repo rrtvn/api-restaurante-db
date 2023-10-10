@@ -4,17 +4,17 @@ import Categoria from '../models/Categoria.js';
 
 
 
-export const verifyIsUser = async (req, res, next) => {
+export const verifyIsUser = async (req, res) => {
 
     try {
-        const userFound = await User.findOne({ email : req.body.email }) //Buscasmos el usuario por correo, deberia ser por rut
-        console.log(userFound);
-
+        const email = req.body.email;
+        const userFound = await User.findOne({ email : email }) //Buscasmos el usuario por correo, deberia ser por rut
+        
         if(!userFound){
             return res.status(400).json({ message: 'Usuario no existe.'});
         }
-        
-        next();
+        console.log('Usuario validado');
+        return res.status(200).json(userFound)
     } catch (error) {
         res.status(500).json({ message: error.message});
     }
@@ -53,4 +53,3 @@ export const verifyExistingRole = (req, res, next) => {
     next();
 };
 
-//FALTA SOLUCIONAR EL ERROR QUE APARECE

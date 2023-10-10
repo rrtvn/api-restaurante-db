@@ -64,7 +64,7 @@ export const SliderCategoria = ({onClick}) => {
                     
                     slides.map((cardCate, index) => (
                         
-                        <SwiperSlide  key={index} virtualIndex={index}>
+                        <SwiperSlide  key={null} virtualIndex={index}>
                             {cardCate}
                             
                         </SwiperSlide>

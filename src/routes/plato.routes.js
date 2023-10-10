@@ -18,7 +18,7 @@ router.post('/', createPlato)
 
 router.get('/', getPlato) 
 
-router.get('/:categorias', getPlatoByCat) 
+router.get('/:cat', getPlatoByCat) 
 
 //router.put('/:PlatoId', updatePlatoById)
 

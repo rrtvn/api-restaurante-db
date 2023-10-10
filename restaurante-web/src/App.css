@@ -40,4 +40,13 @@ p{
     width: 100%;
 }
 
+/* DATAVIEW FORMATO */
+
+
+.data-platos .p-grid{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+ 
 

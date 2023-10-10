@@ -3,28 +3,34 @@ import User from '../models/User'
 import Role from '../models/Role.js'
 import { SECRET } from '../config'
 import { isAdmin } from '../middlewares/authJwt'
+import { verifyIsUser } from '../middlewares/verifySignup'
 
 
 
-export const signInHandler = async (req, res) => {
+export const signInHandler = async (req, res, next) => {
+
+
     try {
-        console.log(req.body.email);
-        const userFound = await User.findOne({ email: req.body.email }).populate(
-            'roles'
-        );
-        console.log(userFound);
-        console.log(req.body.email);
 
-        if (!userFound) return res.status(400).json({ message: 'Usuario no encontrado, intente nuevamnete.' });
+        verifyIsUser(req, res)
 
-        const password = req.body.password;
+        const { email, password } = req.body;
+
+        const userFound = await User.findOne({email: email });
+
+        if (!userFound) {
+            return res.status(401).json({
+                token: null,
+                message: "User not found"
+            });
+        }
+
         const recivedPassword = userFound.password;
 
         const validarPassword = await User.comparePassword(
             password,
             recivedPassword
         );
-        console.log(validarPassword);
 
         if (!validarPassword) {
             return res.status(401).json({
@@ -36,17 +42,9 @@ export const signInHandler = async (req, res) => {
         const token = jwt.sign({ id: userFound._id }, SECRET, {
             expiresIn: 86400, // 24 hours
         });
-
-
-        res.json({ token });
+        console.log(token);
+        res.send({ token });
         next();
-
-        if (!isAdmin) {
-            console.log('No posee el role necesario')
-        } else {
-        }
-
-
 
     } catch (error) {
         console.log(error.message)

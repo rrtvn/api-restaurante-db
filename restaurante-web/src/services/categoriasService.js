@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {API_URL, API_URL_DOCEKR} from '../config.js'
+import {API_URL} from '../config.js'
 
 class CategoriasService {
 

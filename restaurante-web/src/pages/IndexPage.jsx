@@ -74,10 +74,7 @@ export const IndexPage = () => {
       {/* CARRUSEL PLATOS */}
       <section className='my-8 mx-5'>
         <Box className="box-map">
-          {/* <Carousel value={platos} numVisible={3} 
-            numScroll={3} itemTemplate={cardFood}
-            circular
-          ></Carousel> */}
+         
           <Swiper
             className='relative'
             modules={[EffectFade, Navigation, Pagination]}
@@ -90,7 +87,7 @@ export const IndexPage = () => {
             
           >
             {slides.map((slidePlato, index) => (
-              <SwiperSlide key={slidePlato} virtualIndex={index} >
+              <SwiperSlide key={index} virtualIndex={index} >
                 {slidePlato}
               </SwiperSlide>
             ))}

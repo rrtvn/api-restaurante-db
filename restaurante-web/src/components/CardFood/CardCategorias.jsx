@@ -18,7 +18,7 @@ export const CardCategorias = ({ name, onClick }) => {
         , marginBottom: 5
 
       }}>
-      <p>
+      <p className="">
 
         {name}
       </p>

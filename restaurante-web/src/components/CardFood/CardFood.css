@@ -1,3 +1,18 @@
+/* Card Plato desde CardFood.jsx */
+
+
+#card-plato{
+    position: relative;
+    border-radius: 0.5rem;
+    border: 0.5px solid ;    
+    margin-bottom: 5px;
+    
+}
+#card-media-platos{
+    width: 100%;
+}
+/*  */
+/*  */
 .card-conteiner{
     width: 100%;
     overflow: hidden;
@@ -6,15 +21,12 @@
     transition: 0.3s;
     animation: ease-in-out;
     background-color: grey;
-    display: block;
 }
-
-
 .card-media{
     margin-top: 0.5rem;
 }
 .card-media img{
-    size: 275px;
+    
   width: size;
   height: size; 
   overflow: hidden;

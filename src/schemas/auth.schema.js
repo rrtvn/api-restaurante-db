@@ -13,11 +13,11 @@ export const registerReservaSchema = z.object({
 
 export const loginSchema = z.object({
     email: z.string({
-        required_error: "Email es requerido",
-    }),
+        required_error: "Usuario es requerido",
+    }).nonempty(),
     password: z.string({
         required_error: "Contraseña requerida",
-    }).min(6, {message: "La contraseña debe tener minimo 6 caracteres"}),
+    }).min(6, {message: "La contraseña debe tener minimo 6 caracteres"}).nonempty(),
 });
 
 export const registerPlatoSchema = z.object({
