@@ -6,3 +6,4 @@ export const regisReservaRequest = async (reserva) => (await axios.post('/reserv
 export const registrarPlato = async (plato) => (await axios.post('/plato', plato));
 export const obtenerPlatoCat = async (plato) => (await axios.get('/:categorias', plato));
 
+

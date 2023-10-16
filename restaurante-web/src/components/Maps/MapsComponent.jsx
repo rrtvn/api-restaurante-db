@@ -6,15 +6,14 @@ import { API_KEY } from '../../config';
 import './MapsComponent.css'
 
 const containerStyle = {
-  width: '500px',
-  height: '500px'
+  width: '100%',
+  height: '100%'
   
 };
 
 const center = {
   lat: -32.9409205,
   lng: -71.4153275,
-  zoom: 8
 };
 
 export const  MapsComponent = () => {
@@ -42,12 +41,12 @@ export const  MapsComponent = () => {
     <GoogleMap 
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={8}
+        zoom={11}
         onLoad={onLoad}
         onUnmount={onUnmount}
         
     >
-    <Marker label={"Reserva Añañucas"} onLoad={setMap} position={center}></Marker>
+    <Marker label={"Reserva Añañucas"} onLoad={setMap} onUnmount={onUnmount} position={center}></Marker>
     <></>
     </GoogleMap>
   ) : <></>    

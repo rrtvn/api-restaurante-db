@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { createContext, useContext, useState } from "react";
-import Cookies from 'js-cookie'
+// import Cookies from 'js-cookie'
 import { authReducer } from "../reducers/authReducer";
 import { useReducer } from "react";
 

@@ -97,18 +97,18 @@ export const IndexPage = () => {
       <hr></hr>
 
       {/* MAP */}
-      <section className=' relative h-auto'>
-        <Grid container   className=' px-40 py-10' >
+      <section className=' h-auto'>
+        <Grid container spacing={1}  className='lg:block px-40  py-10' >
 
-          <Grid className='  px-20' xs md={4} item >
-            <MapsComponent  className="relative "/>
+          <Grid className=' lg:block mr-11  ' xs item >
+            <MapsComponent  className="md:w-1/4  "/>
           </Grid >
           <Divider   orientation='vertical' />
-          <Grid className='px-20 border ' xs md item >
+          <Grid className=' lg:block border ' xs  item >
 
-          <h1 className='text-center my-10 text-5xl'>Como puedes llegas a nuestro resturante?</h1>
+          <h5 className='text-center my-10 text-3xl'>Como puedes llegas a nuestro resturante?</h5>
           <hr />
-            <p  className='text-emerald-950 py-20 text-2xl'>
+            <p  className='text-emerald-950 py-20 text-lg'>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus, commodi pariatur. 
               Quaerat aspernatur incidunt explicabo nemo itaque maxime aliquam, 
               deserunt et adipisci nostrum saepe vel aut rerum, officia error commodi?

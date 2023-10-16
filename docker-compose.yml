@@ -23,6 +23,6 @@ services:
     container_name: restaurante-db
     image: mongo
     ports:
-      - 27018:27017
+      - 27019:27018
     logging: 
       driver: none

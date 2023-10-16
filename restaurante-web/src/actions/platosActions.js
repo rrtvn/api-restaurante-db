@@ -38,16 +38,12 @@ export const startGuardarPlatos = (plato) => {
 }
 
 export const startCargarPlatoByCat = (cat) => async (dispatch) => {
-    console.log(dispatch)
     try {
         const platos = await platosService.getPlatosByCat(cat)
         if(platos){
-            console.log(dispatch(cargarPlatosByCat(platos)))
-            return dispatch(cargarPlatosByCat(platos))
-
+            dispatch(cargarPlatos(platos.data))
         }
-        return true
     } catch (error) {
-        return false
+        console.error(error)
     }
 }

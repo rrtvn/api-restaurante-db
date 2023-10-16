@@ -27,6 +27,9 @@ export const SliderCategoria = ({onClick}) => {
 
 
     const handleCatClick = (cat) => {
+
+        
+        
         onClick(cat);
         
     }

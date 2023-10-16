@@ -8,13 +8,16 @@ export const verifyIsUser = async (req, res) => {
 
     try {
         const email = req.body.email;
+        if (!email) {
+            
+        }
         const userFound = await User.findOne({ email : email }) //Buscasmos el usuario por correo, deberia ser por rut
         
         if(!userFound){
             return res.status(400).json({ message: 'Usuario no existe.'});
         }
         console.log('Usuario validado');
-        return res.status(200).json(userFound)
+        return res.status(200)
     } catch (error) {
         res.status(500).json({ message: error.message});
     }

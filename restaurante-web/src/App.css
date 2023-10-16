@@ -6,8 +6,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
 
 body{
-    
+    width: 100%;
     color: white;
+    display: block;
     
 }
 p{
@@ -42,10 +43,17 @@ p{
 
 /* DATAVIEW FORMATO */
 
+.p-dataview {
+    position: relative;
+}
+.p-grid{
+    width: 100%;
 
+}
 .data-platos .p-grid{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
  

@@ -43,11 +43,9 @@ class PlatosService {
             const resp = await axios.get(`${API_URL}/plato/${cat}` , {
                 headers:{
                     'Content-Type': 'application/json',
-                },
-                params:{
-                    name: cat
                 }
             })
+            console.log(resp.data)
             return resp.data;
         } catch (error) {
             console.error(error)

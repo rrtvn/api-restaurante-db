@@ -9,7 +9,7 @@ import { useState } from "react";
 
 export const LoginPage = () => {
 
-  const { authState, dispatch} = useAuth();
+  const {  dispatch} = useAuth();
   const dispatchRedux = useDispatch()
 
   const [user, setUser] = useState("")
@@ -18,7 +18,7 @@ export const LoginPage = () => {
 
   const handleLogin = (signIn) => {
 
-    dispatch({type: 'LOGIN_SUCCESS', payload: signIn})
+    dispatch({type: 'iniciarSesion', payload: signIn})
 
     
     const user = dispatchRedux(startIniciarSesion(signIn));
@@ -28,9 +28,9 @@ export const LoginPage = () => {
   
 
   return (
-    <section className='h-screen py-10'>
-      <Box className='mx-20 py-20 inline-block'>
-        <div className="card  flex bg-white  py-20 my-40 mx-48">
+    <section className=''>
+      <Box className='mx-20  inline-block'>
+        <div className="card  flex bg-white  py-20 my-12 mx-48">
           {user && (<Navigate to='/addPlato'></Navigate>)}
           
             <FormLogin onAgregar={handleLogin}/>

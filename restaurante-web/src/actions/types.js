@@ -10,10 +10,9 @@ export const types={
     cargarCategorias: '[Categorias] Cargar Categorias',
     cargarCategoriasById: '[Categorias] Cargar Categorias',
     
-    iniciarSesion: '[Users] Iniciar sesion usuario',
-
+    
     //INICIO DE SESION
-
+    iniciarSesion: '[Users] Iniciar sesion usuario',
     LOGIN_SUCCESS: '[User] Iniciar sesion',
     LOGOUT: '[User] Cerrar sesion',
 };

@@ -9,7 +9,7 @@ export const createPlato = async (req, res) => {
 
     try {
         const { nombre, descripcion, precio, selectedCategoria, rating, image } = req.body
-
+        console.log(selectedCategoria)
         const categoria = selectedCategoria.name;
 
         //NOS ASEGURAMOS QUE LA IMAGEN SE GUARDE EN LA BD 

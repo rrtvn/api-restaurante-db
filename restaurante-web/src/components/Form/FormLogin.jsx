@@ -16,7 +16,7 @@ export const FormLogin = ({onAgregar}) => {
     return (
         <div className="  ">
 
-            <div className="mx-60">
+            <div className="mx-28">
                 <label htmlFor="email" className="w-6rem text-black">
                     Email
                 </label>
@@ -24,7 +24,7 @@ export const FormLogin = ({onAgregar}) => {
                     onInput={(e) => setEmail(e.target.value)} type="text" />
             </div>
 
-            <div className="mx-60 py-5">
+            <div className="mx-28 py-5">
                 <label htmlFor="password" className="w-6rem text-black">
                     Password
                 </label>
@@ -33,7 +33,7 @@ export const FormLogin = ({onAgregar}) => {
             </div>
             <div className="mx-60 ">
 
-                <Button label="Login" icon="pi pi-user" onClick={handleReserva} className="w-10rem my-10 mx-auto"></Button>
+                <Button label="Login" icon="pi pi-user" onClick={handleReserva} className="w-10rem items-end my-10 mx-auto"></Button>
             </div>
 
 
