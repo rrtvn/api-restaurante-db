@@ -9,21 +9,22 @@ import { useState } from "react";
 
 export const LoginPage = () => {
 
-  const {  dispatch} = useAuth();
-  const dispatchRedux = useDispatch()
+  // const {  dispatch} = useAuth();
+  // const dispatchRedux = useDispatch()
 
-  const [user, setUser] = useState("")
+  // const [user, setUser] = useState("")
+  
   
 
+  // const handleLogin = (user) => {
 
-  const handleLogin = (signIn) => {
-
-    dispatch({type: 'iniciarSesion', payload: signIn})
+  //   dispatch({type: 'iniciarSesion', payload: signIn})
 
     
-    const user = dispatchRedux(startIniciarSesion(signIn));
-    return setUser(user)
-  }
+  //   const user = dispatchRedux(startIniciarSesion(signIn));
+  //   console.log(user)
+  //   return setUser(user)
+  // }
 
   
 
@@ -31,9 +32,9 @@ export const LoginPage = () => {
     <section className=''>
       <Box className='mx-20  inline-block'>
         <div className="card  flex bg-white  py-20 my-12 mx-48">
-          {user && (<Navigate to='/addPlato'></Navigate>)}
+          {/* {user && (<Navigate to='/addPlato'></Navigate>)} */}
           
-            <FormLogin onAgregar={handleLogin}/>
+            <FormLogin />
           <Divider layout='vertical' ></Divider>
           <div className="  ">
 

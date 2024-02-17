@@ -30,10 +30,10 @@ import CardFoodIndx from '../components/CardFood/CardFoodIndx';
 export const IndexPage = () => {
 
 
-  const [swiperRef, setSwiperRef] = useState(null);
   const dispatch = useDispatch();
   const { platos } = useSelector(state => state.platos);
-
+  const [swiperRef, setSwiperRef] = useState(null);
+  
   const [slides, setSlides] = useState(
     platos.map((plato) =>  <CardFoodIndx
     key={plato._id}
@@ -47,7 +47,7 @@ export const IndexPage = () => {
 
   useEffect(() => {
     dispatch(startCargarPlato());
-  }, [dispatch, startCargarPlato].slice(0,9));
+  }, []);
 
 
   // const cardFood = (plato) => {
@@ -78,7 +78,7 @@ export const IndexPage = () => {
           <Swiper
             className='relative'
             modules={[EffectFade, Navigation, Pagination]}
-            onSwiper={setSwiperRef}
+            onSwiper={swiperRef}
             centeredSlides={true}
             slidesPerView={1}
             spaceBetween={30}

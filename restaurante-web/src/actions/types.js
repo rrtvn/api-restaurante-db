@@ -13,6 +13,7 @@ export const types={
     
     //INICIO DE SESION
     iniciarSesion: '[Users] Iniciar sesion usuario',
-    LOGIN_SUCCESS: '[User] Iniciar sesion',
-    LOGOUT: '[User] Cerrar sesion',
+    LOGIN_SUCCESS: '[User] LOGIN_SUCCESS',
+    LOGIN_FAILURE: '[User] LOGIN_FAILURE',
+    LOGOUT_SUCCESS: '[User] LOGOUT_SUCCESS',
 };

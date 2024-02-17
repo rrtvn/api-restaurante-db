@@ -11,16 +11,17 @@ const iniciarSesion = (user) => ({
 })
 
 
-export const startIniciarSesion = (signIn) => async (dispatch) =>{
+export const startIniciarSesion = (email, password) => async (dispatch) =>{
 
     try {
-        const user = await usersService.signIn(signIn);
+        const user = usersService.signIn(email, password);
         console.log(user)
-        if (user) {
-           dispatch(iniciarSesion(user));
-        }
-        return true;
+        dispatch(iniciarSesion);
     } catch (error) {
-        return false
+        console.log(error)
+        // dispatch({
+        //     type: 'LOGIN_FAIL',
+        //     payload: error.response.data.msg,
+        // })
     }
 }

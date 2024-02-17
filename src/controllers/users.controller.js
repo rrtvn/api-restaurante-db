@@ -9,7 +9,7 @@ export const createUser = async (req, res) => {
         const { rut, name, lastName, email, phone, password, roles } = req.body//FALTARIA tipoUser COMO VARIABLE A INGRESAR
 
         console.log(req.body)
-        
+
 
         const user = new User({
             rut,
@@ -17,14 +17,14 @@ export const createUser = async (req, res) => {
             lastName,
             email,
             phone,
-            password, 
+            password,
 
         });
 
         if (roles) {
-             const foundRoles = await Role.find({ name: roles.name });
-             user.roles = foundRoles.map((role) => role._id);
-        } 
+            const foundRoles = await Role.find({ name: roles.name });
+            user.roles = foundRoles.map((role) => role._id);
+        }
         //     const role = await Role.findOne({ name: "user" });
         //     user.roles = [role._id];
         // }
@@ -39,7 +39,7 @@ export const createUser = async (req, res) => {
         // })
 
         //CODIGOS DE ESTADO, PARA DECIRLE AL NAVEGADOR LO QUE ESTA PASANDO
-          res.status(200).json({
+        res.status(200).json({
             _id: savedUser._id,
             rut: savedUser.rut,
             name: savedUser.name,
@@ -49,7 +49,7 @@ export const createUser = async (req, res) => {
             password: savedUser.password,
             roles: savedUser.roles,
         }
-          );
+        );
     } catch (error) {
         console.error(error.message);
     }
@@ -63,6 +63,22 @@ export const getUsers = async (req, res) => {
 
     } catch (error) {
         console.error(error.message)
+    }
+}
+export const getUserByToken = async (req, res) => {
+    const token = req.headers.authorization;
+
+    try {
+        const decodedToken = jwt.decode(token);
+        console.log(decodedToken);
+
+        const user = await User.findOne({ _id: decodedToken.id });
+        if (!token) {
+            return res.status(401).json({ message: 'Token no recibido ' })
+        }
+        return res.status(200)
+    } catch (error) {
+        console.log(error)
     }
 }
 export const getUserById = async (req, res) => {
@@ -83,16 +99,16 @@ export const updateUserById = async (req, res) => {
 }
 export const deleteUserById = async (req, res) => {
     try {
-        const {userId}  = req.params;
+        const { userId } = req.params;
         console.log(userId)
-        if (!userId) return res.json({ message: 'User ID es requerido'});
+        if (!userId) return res.json({ message: 'User ID es requerido' });
         const findUser = await User.findByIdAndDelete(userId)
         res.json({
             data: findUser,
         });
-        
+
     } catch (error) {
         console.error(error.message);
-        res.status(500).json({ message: 'Server error.'})
+        res.status(500).json({ message: 'Server error.' })
     }
 }

@@ -1,8 +1,10 @@
-import { useEffect } from "react";
-import { createContext, useContext, useState } from "react";
+
+import { createContext, useContext, useEffect, useState } from "react";
 // import Cookies from 'js-cookie'
-import { authReducer } from "../reducers/authReducer";
-import { useReducer } from "react";
+
+import { useDispatch, useSelector } from "react-redux";
+import Cookies from "js-cookie";
+import { loginUser, logoutUser } from "../actions/authActions";
 
 const AuthContext = createContext();
 
@@ -15,53 +17,45 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
 
-    const [errors, setErrors] = useState(false);
+    const dispatch = useDispatch();
+    const [session, setSession ] = useState({isAuthenticated: false, token: null})
+    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+    const user = useSelector((state) => state.auth.user);
+    const error = useSelector((state) => state.auth.error);
+    const [token, setToken] = useState(Cookies.get('token') || null);
 
 
 
     //AUI SE DEFINE ESTADO INICIAL
 
-    const initialState = {
-        user: null,
-        isAuthenticated: false,
-        loading: true
-    };
-
-
-
-    // const [reserva, setReserva] = useState(null);
-
-    //USAMOS USEREDUCER PARA MANEJAR EL ESTADO DE AUTENTICACION
-    const [authState, dispatch] = useReducer(authReducer, initialState);
-
-
+    // const initialState = {
+    //     user: null,
+    //     isAuthenticated: false,
+    //     loading: true
+    // };
 
     useEffect(() => {
-        if (errors.length > 0) {
-            const timer = setTimeout(() => {
-                setErrors([]);
-            }, 5000);
-            return () => clearTimeout(timer);
+        if(isAuthenticated== true){
+            return alert('hola mundo')
         }
-    }, [errors])
+    },[])
 
-    // const regisReserva = async (reserva) => {
-    //     try {
-    //         const res = await regisReservaRequest(reserva);
-    //         if (res.status === 200){
-    //             setReserva(res.data);
-    //             setIsAuthenticated(true);
-    //         }
-    //     } catch (error) {
-    //         console.log(error);
-    //         setErrors(error);
-    //     }
-    // }
+
+
+    const login = async (credentials) => {
+        const res = dispatch(loginUser(credentials));
+        const user = Cookies.get(res);
+        console.log(user);
+        return token
+    }
+    const logout = () => {
+        dispatch(logoutUser())
+    }
 
 
 
     return (
-        <AuthContext.Provider value={{ authState, dispatch }}>
+        <AuthContext.Provider value={{ isAuthenticated, user, dispatch, error, token, login, logout }}>
             {children}
         </AuthContext.Provider>
     );

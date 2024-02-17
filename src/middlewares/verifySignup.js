@@ -1,6 +1,7 @@
 import User from '../models/User.js';
 import ROLES  from '../models/Role.js'
 import Categoria from '../models/Categoria.js';
+import { z } from 'zod';
 
 
 
@@ -8,11 +9,9 @@ export const verifyIsUser = async (req, res) => {
 
     try {
         const email = req.body.email;
-        if (!email) {
-            
-        }
-        const userFound = await User.findOne({ email : email }) //Buscasmos el usuario por correo, deberia ser por rut
         
+        
+        const userFound = await User.findOne({ email : email }) //Buscasmos el usuario por correo, deberia ser por rut
         if(!userFound){
             return res.status(400).json({ message: 'Usuario no existe.'});
         }

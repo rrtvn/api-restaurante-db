@@ -4,19 +4,20 @@ import { API_URL } from '../config';
 
 class UsersService {
 
-    async signIn(signIn) {
+    async signIn(token) {
+        
 
-       try {
-            const resp = await axios.post(`${API_URL}/auth/signin`, signIn, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    
-                }
-            });
-            return resp.data
-       } catch (error) {
-            console.log(error)
-       }
+        axios.get(`${API_URL}/users/${token}`, {
+            headers: {
+                'Authorization': `${token}`
+            },
+        })
+            .then((resp) => {
+                console.log(resp)
+                return resp.data
+            })
+            .catch((error) => console.log(error));
+       
     }
 
 }

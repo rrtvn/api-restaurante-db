@@ -43,8 +43,8 @@ export const signInHandler = async (req, res, next) => {
             expiresIn: 86400, // 24 hours
         });
         console.log(token);
-        res.send({ token });
-        next();
+        res.json({ token });
+        // next({token});
 
     } catch (error) {
         console.log(error.message)

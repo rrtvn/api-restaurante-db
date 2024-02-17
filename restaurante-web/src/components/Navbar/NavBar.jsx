@@ -1,8 +1,18 @@
 //import {NavLink} from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
 import '../Navbar/NavBar.css'
+import { useDispatch, useSelector } from 'react-redux'
+import Cookies from 'js-cookie';
+import {  logoutUser } from '../../actions/authActions';
 
 export const NavBar = () => {
+    const dispatch = useDispatch();
+    const token = useSelector((state)=> state.auth.token);
+
+    const handleLogout = () => {
+        Cookies.remove('token');
+        dispatch(logoutUser())
+    }
     return (
             <nav className="uk-navbar-container " id='nav-container'>
             <div className="uk-navbar">
@@ -21,6 +31,12 @@ export const NavBar = () => {
                         <ul className="uk-navbar-nav">
                             <NavLink to="/reserva" className='reserva uk-active'>Reserva</NavLink>
                             <NavLink to="/comoLlegar" className='comoLlegar uk-active'>Como LLegar</NavLink>
+                            {token && (
+                                
+                                <NavLink to="/" onClick={handleLogout} className='comoLlegar uk-active'>Cerrar Sesion</NavLink>
+                            )
+
+                            }
                         </ul>
                     </div>
 

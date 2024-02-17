@@ -1,17 +1,44 @@
 import { useState } from "react";
-import { Button } from "primereact/button"
-import { InputText } from "primereact/inputtext"
+import { Button } from "primereact/button";
+import { InputText } from "primereact/inputtext";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import Cookies from 'js-cookie';
+import { useAuth } from "../../context/authContext";
+import { loginUser } from "../../actions/authActions";
+import usersService from "../../services/usersService";
 
 
 export const FormLogin = ({onAgregar}) => {
 
+    const {  login } = useAuth();
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    
 
-    const handleReserva = async () => {
-        let signIn = { email, password};
-        onAgregar(signIn);
+    const dispatch = useDispatch();
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+
+        try {
+            const credentials = {email, password};
+            dispatch(login(credentials))
+            const user = usersService.signIn(Cookies.get('token'));
+            if(!user){
+                alert('hola')
+            }
+            
+            
+        } catch (error) {
+            console.log(error)
+        }
+        
+        // navigate('/addPlato');
     }
+
+    
 
     return (
         <div className="  ">
@@ -33,7 +60,7 @@ export const FormLogin = ({onAgregar}) => {
             </div>
             <div className="mx-60 ">
 
-                <Button label="Login" icon="pi pi-user" onClick={handleReserva} className="w-10rem items-end my-10 mx-auto"></Button>
+                <Button label="Login" icon="pi pi-user" onClick={handleLogin} className="w-10rem items-end my-10 mx-auto"></Button>
             </div>
 
 

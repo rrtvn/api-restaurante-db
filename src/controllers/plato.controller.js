@@ -63,10 +63,13 @@ export const getPlatoByCat = async (req, res) => {
         const catName = req.params.cat;
         if(!catName) return res.json({message: 'Nombre de categoria es requerido'})
         const findPlatoByCat =  await Plato.find({categorias: catName})
+    if (findPlatoByCat != null) {
+        
         console.log(findPlatoByCat)
         res.json({
             data: findPlatoByCat,
         })
+    }
         next();
     } catch (error) {
         console.error(error.message)
