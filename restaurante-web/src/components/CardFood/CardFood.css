@@ -25,12 +25,12 @@
 /*  */
 .card-conteiner{
     width: 100%;
-    overflow: hidden;
+    overflow: visible;
     margin: 10px;
     box-shadow: 0px 0px 15px -5px;
-    transition: 0.3s;
+    transition: 0.1s;
     animation: ease-in-out;
-    background-color: grey;
+    background-color: red;
 }
 .card-media{
     margin-top: 0.5rem;
@@ -66,4 +66,33 @@ p{
     padding: 0.5rem;
     transition: 0.2s;
 }
+/* TYPOGRAPHY TITLE CARDFOOD INDEX */
 
+#title-typo{
+    color: #f4f5f0;
+    text-transform: uppercase;
+    background-color: cadetblue;
+    background-size: auto;
+    font-style: oblique ;
+    padding-bottom: 1%;
+}
+
+.card-banner{
+    height: 250px;
+    flex-basis: '100%';
+    margin: 0px;
+}
+
+#grid-banner{
+    
+    margin: 0px;
+}
+#grid-img{
+    
+    max-height: 250px;
+}
+#grid-info{
+    max-height: 250px;
+    padding: 0;
+    background-color: #AD8865;
+}

@@ -5,8 +5,6 @@ import { startCargarPlato } from '../actions/platosActions';
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 import { ImgIndex } from '../components/ImgIndex/ImgIndex';
-
-import { Carousel } from 'primereact/carousel'
 import { Grid, Typography, colors } from '@mui/material';
 import { MapsComponent } from '../components/Maps/MapsComponent';
 
@@ -41,6 +39,7 @@ export const IndexPage = () => {
     title={plato.nombre}
     categorias={plato.categorias}
     description={plato.descripcion}
+    precio={plato.precio}
 
   ></CardFoodIndx>)
 );
@@ -50,18 +49,6 @@ export const IndexPage = () => {
   }, []);
 
 
-  // const cardFood = (plato) => {
-  //   return (
-  //     <CardFood
-  //       img={plato.img}
-  //       title={plato.nombre}
-  //       categorias={plato.categorias}
-  //       description={plato.descripcion}
-  //       precio={"$ " + plato.precio}
-
-  //     ></CardFood>
-  //   )
-  // }
 
   return (
     <div >
@@ -73,40 +60,41 @@ export const IndexPage = () => {
       <hr></hr>
       {/* CARRUSEL PLATOS */}
       <section className='my-8 mx-5'>
-        <Box className="box-map">
+        {/* <Box className="box-map">
          
-          <Swiper
-            className='relative'
+          
+        </Box> */}
+        <Swiper
+            className=''
             modules={[EffectFade, Navigation, Pagination]}
             onSwiper={swiperRef}
             centeredSlides={true}
             slidesPerView={1}
-            spaceBetween={30}
+            spaceBetween={0}
             effect={'fade'}
-            navigation={true}
-            
+            // navigation={true}
+            id='swiper-index'
           >
             {slides.map((slidePlato, index) => (
-              <SwiperSlide key={index} virtualIndex={index} >
+              <SwiperSlide    id='swiper-slide'     className=''    key={index} virtualIndex={index} >
                 {slidePlato}
               </SwiperSlide>
             ))}
           </Swiper>
-        </Box>
       </section>
-      <hr></hr>
+      {/* <hr></hr> */}
 
       {/* MAP */}
-      <section className=' h-auto'>
+      <section className=' h-auto '>
         <Grid container spacing={1}  className='lg:block px-40  py-10' >
 
           <Grid className=' lg:block mr-11  ' xs item >
-            <MapsComponent  className="md:w-1/4  "/>
+            {/* <MapsComponent  className="md:w-1/4  "/> */}
           </Grid >
           <Divider   orientation='vertical' />
           <Grid className=' lg:block border ' xs  item >
 
-          <h5 className='text-center my-10 text-3xl'>Como puedes llegas a nuestro resturante?</h5>
+          <h1 className='text-center my-10 text-3xl'>¿Como puedes llegas a nuestro resturante?</h1>
           <hr />
             <p  className='text-emerald-950 py-20 text-lg'>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus, commodi pariatur. 

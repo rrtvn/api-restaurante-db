@@ -48,11 +48,10 @@ export const SliderCategoria = ({onClick}) => {
  
     return (
         <Swiper
-                    
+        
                     modules={[Virtual, Navigation, Pagination]}
                     onSwiper={setSwiperRef}
                     centeredSlides={false}
-                    
                     spaceBetween={1}
                     slidesPerView={4}
                     pagination={{

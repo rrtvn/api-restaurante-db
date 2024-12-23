@@ -65,7 +65,9 @@ export const FooterContent = () => {
             </ul>
           </Grid>
         </Grid>
+
         <Divider component="div" id="divider" className=" my-10" />
+        
         <Grid container className="">
           <Grid className="mx-40" item xs>
 

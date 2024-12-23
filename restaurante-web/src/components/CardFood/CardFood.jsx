@@ -42,7 +42,7 @@ export const CardFood = ({ img, title, categorias, description, precio }) => {
                 </Grid>
                 <Grid>
                     <Typography className='pt-5 pr-5 h-14' align='right' color={'black'} component="div">
-                        {precio}
+                        {precio.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
                     </Typography>
 
                 </Grid>

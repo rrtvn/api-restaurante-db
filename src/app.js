@@ -1,6 +1,6 @@
 //SE COLOCAN ESTOS DATOS EN APP.JS SOLO POR ORDEN
 
-import express from 'express'
+import express, { application } from 'express'
 import morgan from 'morgan';
 import cors from "cors";
 import helmet from "helmet";
@@ -26,7 +26,7 @@ app.set("port", process.env.PORT || 4010);
 app.set("json spaces", 4);
 
 const corsOptions = {
-    origin:'http://localhost:4010', 
+    origin:'http://0.0.0.0:4010', 
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 };

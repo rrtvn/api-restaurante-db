@@ -1,7 +1,6 @@
-# VERSION DE DOCKER-COMPOSE
-version: '3'
 # . ES PARA CONSTRUIR DESDE DONDE ESTA ESTE ARCHIVO CREADO
 services:
+  
   web:
     container_name: api-restaurante-db 
     restart: always
@@ -11,9 +10,10 @@ services:
         limits:
           cpus: '1.5'
           memory: 2Gb
-        
+    depends_on:
+      - mongo    
     ports:
-      - 4000:4010
+      - 4010:4010
     links: 
       - mongo
     volumes:
@@ -23,6 +23,6 @@ services:
     container_name: restaurante-db
     image: mongo
     ports:
-      - 27017:27017
+      - 27017:27017 ## puerto para acceder normarl desde el navegador:puertoEntregaDesdeDocker 
     logging: 
       driver: none
