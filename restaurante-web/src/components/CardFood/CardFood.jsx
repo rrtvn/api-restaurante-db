@@ -10,38 +10,37 @@ export const CardFood = ({ img, title, categorias, description, precio }) => {
     return (
 
 
-        <Card id='card-plato' sx={{ width: 240 }}
-            className=" h-full mt-5 ml-3 mr-3 py-6 px-4 surface-border 
-                border-1 border-round sm:col-4 lg:col-12 xl:col-3 "
+        <Card id='card-plato' sx={{ width: 240, maxHeight:360, minHeight: 280, position: 'static' }}
+            className=" h-full mt-5 ml-3 mr-3 py-2 px-1 surface-border 
+                border-1 border-round col-12 sm:col-6  lg:col-12 xl:col-4 "
         >
 
             <CardMedia
                 id='card-media-platos'
-                className=' w-full h-2/5  rounded-lg shadow-lg   '
-                sx={{ height: 500 }}
+                className=' w-full   rounded-lg shadow-lg   '
+                sx={{  }}
                 image={'src/assets/Platos/' + img}
             />
-            <Stack spacing={1} id='conteiner-card ' className='conteiner-content mt-5 px-5 h-2/5 '>
+            <Stack spacing={0} id='stack-content' className=''>
 
                 <Grid>
-                    <Typography gutterBottom className='h-10 mt-5 relative' color={'black'} component="div">
+                    <Typography variant='h6' sx={{overflow: 'hidden', whiteSpace: "nowrap"}} color={'black'} component="div">
                         {title}
                     </Typography>
                 </Grid>
-                <Divider></Divider>
                 <Grid>
-                    <Typography gutterBottom className='' color={'black'} component="div">
+                    <Typography gutterBottom variant='h9' color={'black'} component="div">
                         {categorias}
                     </Typography>
                 </Grid>
                 <Grid>
-                    <Typography gutterBottom className='text-justify ' color={'black'} component="div">
+                    <Typography gutterBottom variant='h7' className='text-justify ' color={'black'} component="div">
                         {description}
                     </Typography>
 
                 </Grid>
                 <Grid>
-                    <Typography className='pt-5 pr-5 h-14' align='right' color={'black'} component="div">
+                    <Typography className='pt-5 pr-5 h-14' variant='h6' align='right' color={'black'} component="div">
                         {precio.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
                     </Typography>
 

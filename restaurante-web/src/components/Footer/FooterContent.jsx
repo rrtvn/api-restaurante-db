@@ -12,8 +12,8 @@ export const FooterContent = () => {
   return (
 
 
-    <footer className="max-w-full ">
-      <div className="mx-6 min-w-max max-w-full p-4 py-6 lg:py-8">
+    <footer style={{ alignItems:""}}  className="">
+      <div className="">
         <Grid className="flex static" spacing={3}>
           <Grid item xs>
             <a href="https://nvrrt.cl/" className="">

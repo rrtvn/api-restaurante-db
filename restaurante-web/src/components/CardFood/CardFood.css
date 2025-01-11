@@ -6,15 +6,13 @@
     border-radius: 0.5rem;
     border: 0.5px solid ;    
     margin-bottom: 5px;
-    height: 100%;
-    
+    box-shadow: 80%;
 }
 #card-media-platos{
     width: 100%;
-    height: 30vh;
+    height: 20vh;
     background-size: cover;
     background-position: center;
-
     
     
 }

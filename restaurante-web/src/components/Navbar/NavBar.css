@@ -22,7 +22,10 @@ span{
 }
 
 
-
+#appbar-nav{
+    background-color: #360000;
+    width: 100%;
+}
 
 .uk-navbar-nav{
     margin-top: 25px;

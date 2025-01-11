@@ -1,4 +1,4 @@
-import { Card, CardActionArea } from "@mui/material"
+import { Card, CardActionArea, Typography } from "@mui/material"
 
 export const CardCategorias = ({ name, onClick }) => {
 
@@ -10,18 +10,22 @@ export const CardCategorias = ({ name, onClick }) => {
       
       <Card className="card-cat"
       sx={{
-        minWidth: 85
-        , minHeight: 120
+        
+         maxHeight: 120
         , marginLeft: 2
         , marginRight: 2
         , marginTop: 1
         , marginBottom: 5
-
-      }}>
-      <p className="">
+        , maxBlockSize: 120,
+        
+      }}
+      
+      
+      >
+      <Typography sx={{overflow: 'hidden', whiteSpace: "nowrap"}}>
 
         {name}
-      </p>
+      </Typography>
     </Card>
     </CardActionArea>
     

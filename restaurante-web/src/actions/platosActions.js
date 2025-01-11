@@ -39,10 +39,17 @@ export const startGuardarPlatos = (plato) => {
 
 export const startCargarPlatoByCat = (cat) => async (dispatch) => {
     try {
-        const platos = await platosService.getPlatosByCat(cat)
-        if(platos){
+
+        if(cat == 'All'){
+            const platosAll = await platosService.getPlatos();
+            dispatch(cargarPlatos(platosAll))
+        }else{
+
+            const platos = await platosService.getPlatosByCat(cat)
             dispatch(cargarPlatos(platos.data))
         }
+        // if(platos){
+        // }
     } catch (error) {
         console.error(error)
     }

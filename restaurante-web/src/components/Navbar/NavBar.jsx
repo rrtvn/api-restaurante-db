@@ -1,50 +1,197 @@
 //import {NavLink} from 'react-router-dom'
-import { NavLink } from 'react-router-dom'
-import '../Navbar/NavBar.css'
-import { useDispatch, useSelector } from 'react-redux'
-import Cookies from 'js-cookie';
-import {  logoutUser } from '../../actions/authActions';
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import MenuIcon from "@mui/icons-material/Menu";
+import Container from "@mui/material/Container";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
+import { NavLink } from "react-router-dom";
+import "../Navbar/NavBar.css";
+import { useDispatch, useSelector } from "react-redux";
+import Cookies from "js-cookie";
+import { logoutUser } from "../../actions/authActions";
+
+
+const routes = [
+  { label: "Inicio", path: "/" },
+  { label: "Carta", path: "carta" },
+  { label: "Reserva", path: "reserva" },
+  { label: "¿Como Llegar?", path: "comoLlegar" },
+  { label: "Agregar Plato", path: "addPlato" }, //SOLO DE MOMENTO PARA TENER ACCESO RAPIDO
+  { label: "Login", path: "login" },
+];
+const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 export const NavBar = () => {
-    const dispatch = useDispatch();
-    const token = useSelector((state)=> state.auth.token);
 
-    const handleLogout = () => {
+const handleLogout = () => {
         Cookies.remove('token');
         dispatch(logoutUser())
     }
-    return (
-            <nav className="uk-navbar-container " id='nav-container'>
-            <div className="uk-navbar">
+  //   const dispatch = useDispatch();
+  //   const token = useSelector((state) => state.auth.token);
 
-                <div className="uk-navbar-center">
+  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-                    <div className="uk-navbar-center-left">
-                        <ul className="uk-navbar-nav" >
-                            <NavLink to="/" className='home uk-active' >Inicio</NavLink>
-                            <NavLink to="/carta" className='carta uk-active'>Carta</NavLink>
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
 
-                        </ul>
-                    </div>
-                    <img src='src/assets/Logos/logo1.png' className='logo-brand align-middle' alt='logo'></img>
-                    <div className="uk-navbar-center-right">
-                        <ul className="uk-navbar-nav">
-                            <NavLink to="/reserva" className='reserva uk-active'>Reserva</NavLink>
-                            <NavLink to="/comoLlegar" className='comoLlegar uk-active'>Como LLegar</NavLink>
-                            {token && (
-                                
-                                <NavLink to="/" onClick={handleLogout} className='comoLlegar uk-active'>Cerrar Sesion</NavLink>
-                            )
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
 
-                            }
-                        </ul>
-                    </div>
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
 
-                </div>
+  return (
+    <AppBar  id="appbar-nav" position="static">
+      <Container sx={{width: "100%"}} >
+        <Toolbar disableGutters>
+          {/* ---------------------------------- */}
+          {/* LOGO WEB */}
+          <NavLink to={"/"}>
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              to="/"
+              sx={{
+                mr: 2,
+                display: { xs: "none", md: "flex" },
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "white",
+                textDecoration: "none",
+              }}
+            >
+              LOGO
+            </Typography>
+          </NavLink>
 
-            </div>
-        </nav>
-    )
-}
+          {/* BOX WEB ESCRITORIO */}
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            {routes.map((route) => (
+              <NavLink key={route} to={route.path} onClick={handleCloseNavMenu}>
+                <Button>
+                  <Typography
+                    id={route.path}
+                    color={"white"}
+                    sx={{ textAlign: "center" }}
+                  >
+                    {route.label}
+                  </Typography>
+                </Button>
+              </NavLink>
+            ))}
+          </Box>
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: "45px" }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {settings.map((setting) => (
+                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  <Typography sx={{ textAlign: "center" }}>
+                    {setting}
+                  </Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
 
+          {/* ---------- MOVIL --------------- */}
 
+          {/* BOX WEB MOVIL */}
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{ display: { xs: "block", md: "none" } }}
+            >
+              {routes.map((route) => (
+                <NavLink key={route} to={route.path}>
+                  <MenuItem onClick={handleCloseNavMenu}>
+                    <Typography sx={{ textAlign: "center" }}>
+                      {route.label}
+                    </Typography>
+                  </MenuItem>
+                </NavLink>
+              ))}
+            </Menu>
+          </Box>
+
+          {/* LOGO MOVIL */}
+          <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href="#app-bar-with-responsive-menu"
+            sx={{
+              mr: 2,
+              display: { xs: "flex", md: "none" },
+              flexGrow: 1,
+              fontFamily: "monospace",
+              fontWeight: 700,
+              letterSpacing: ".3rem",
+              color: "white",
+              textDecoration: "none",
+            }}
+          >
+            LOGO MOVIL
+          </Typography>
+        </Toolbar>
+      </Container>
+    </AppBar>
+  );
+};
