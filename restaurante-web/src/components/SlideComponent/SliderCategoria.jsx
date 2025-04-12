@@ -3,17 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { startCargarCategoria } from "../../actions/categoriasActions";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Virtual, Navigation, Pagination } from "swiper/modules";
-import { CardCategorias } from "../CardFood/CardCategorias";
 
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { render } from "react-dom";
+import { CardActionArea, Typography } from "@mui/material";
 
-export const SliderCategoria = ({ onClick }) => {
+export const SliderCategoria = ({ onClick, categorias }) => {
   const dispatch = useDispatch();
-  const { categorias } = useSelector((state) => state.categorias);
-
+ 
+  
   const [swiperRef, setSwiperRef] = useState(null);
 
   useEffect(() => {
@@ -21,42 +20,63 @@ export const SliderCategoria = ({ onClick }) => {
   }, []);
 
   const handleCatClick = (cat) => {
-    if(onClick(cat)=='all'){
-      render()
+    if (onClick(cat) == "all") {
+      render();
     }
     onClick(cat);
   };
+  
+// ORDENA EL ARRAY DE CATEGORIAS ALFABETICAMENTE
+  const  sortedCate =   categorias.sort((a,b) => a.name.localeCompare(b.name)); 
 
+  
   const [slides, setSlides] = useState(
-    categorias.map((cat) => (
-      <CardCategorias
+    
+    sortedCate.map((cat) => (
+      <CardActionArea
+        className=""
         key={cat.id}
         onClick={() => handleCatClick(`${cat.name}`)}
         name={cat.name}
-      ></CardCategorias>
+      >
+        <Typography
+          className="typo-card "
+          sx={{
+            overflow: "hidden",
+            whiteSpace: "nowrap",
+            width: "inherit",
+            height: "inherit",
+            backgroundColor: "#316049",
+            color: "#f4f5f0",
+            borderRadius: 3
+          }}
+        >
+          {cat.name}
+        </Typography>
+      </CardActionArea>
     ))
   );
 
   return (
     <Swiper
-      id='swiperSlide-cat'
-      xs={{ 
-        
-      }}
+      id="swiperSlide-cat"
       modules={[Virtual, Navigation, Pagination]}
-      onSwiper={setSwiperRef}
-      centeredSlides={false}
-      spaceBetween={1}
       slidesPerView={4}
-      pagination={{
-        type: "bullets",
-        clickable: true,
-      }}
+      spaceBetween={10}
       navigation={false}
       virtual
+      className=""
     >
       {slides.map((cardCate, index) => (
-        <SwiperSlide key={index}  style={{width: "100%"}} virtualIndex={index}>
+        <SwiperSlide
+          key={index}
+          id="swip"
+          onClick={onclick}
+          isVisible
+          style={{ width: "100%" }}
+          virtualIndex={index}
+          className=""
+        >
           {cardCate}
         </SwiperSlide>
       ))}

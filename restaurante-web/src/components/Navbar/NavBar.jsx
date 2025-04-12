@@ -17,10 +17,10 @@ import "../Navbar/NavBar.css";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie";
 import { logoutUser } from "../../actions/authActions";
-
+import { authReducer } from "../../reducers/authReducer";
 
 const routes = [
-  { label: "Inicio", path: "/" },
+  { label: "Inicio", path: "inicio" }, // TODO: change to /home
   { label: "Carta", path: "carta" },
   { label: "Reserva", path: "reserva" },
   { label: "¿Como Llegar?", path: "comoLlegar" },
@@ -30,12 +30,15 @@ const routes = [
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 export const NavBar = () => {
+  const isAuthenticated = useSelector((state) => state.auth);
 
-const handleLogout = () => {
-        Cookies.remove('token');
-        dispatch(logoutUser())
-    }
-  //   const dispatch = useDispatch();
+  
+
+  const handleLogout = () => {
+    Cookies.remove("token");
+    dispatch(logoutUser());
+  };
+  const dispatch = useDispatch();
   //   const token = useSelector((state) => state.auth.token);
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -57,12 +60,12 @@ const handleLogout = () => {
   };
 
   return (
-    <AppBar  id="appbar-nav" position="static">
-      <Container sx={{width: "100%"}} >
+    <AppBar id="appbar-nav" position="static">
+      <Container sx={{ width: "100%", height: "100px" }}>
         <Toolbar disableGutters>
           {/* ---------------------------------- */}
           {/* LOGO WEB */}
-          <NavLink to={"/"}>
+          <NavLink to={"/inicio"}>
             <Typography
               variant="h6"
               noWrap
@@ -83,20 +86,41 @@ const handleLogout = () => {
           </NavLink>
 
           {/* BOX WEB ESCRITORIO */}
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box
+            row
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex", height: "100px" },
+            }}
+          >
             {routes.map((route) => (
-              <NavLink key={route} to={route.path} onClick={handleCloseNavMenu}>
-                <Button>
+              <NavLink
+                key={route.id}
+                to={route.path}
+                sx
+                onClick={handleCloseNavMenu}
+              >
+                <Button sx={{ height: "100%", alignItems: "center" }}>
                   <Typography
                     id={route.path}
-                    color={"white"}
-                    sx={{ textAlign: "center" }}
+                    color={"F1F4F2"}
+                    sx={{
+                      textAlign: "center",
+                      height: "99%",
+                      padding: "30px",
+                      overflow: "hidden",
+                      whiteSpace: "nowrap",
+                    }}
                   >
                     {route.label}
                   </Typography>
                 </Button>
               </NavLink>
+
+              
             ))}
+
+            {isAuthenticated (<NavLink></NavLink>)}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">

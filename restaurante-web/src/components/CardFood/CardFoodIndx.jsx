@@ -1,48 +1,103 @@
+import "./CardFoodIndx.css";
 import {
   Box,
   Card,
   CardContent,
   CardMedia,
   Grid,
+  Rating,
   Typography,
 } from "@mui/material";
+import StarIcon from "@mui/icons-material/Star";
 
-const CardFoodIndx = ({ img, title, categorias, description, precio }) => {
+const CardFoodIndx = ({
+  img,
+  title,
+  categorias,
+  clasificacion,
+  precio,
+}) => {
   return (
-    <Card
-      className="card-banner"
-      md={{ maxWidth: 720, display: "flex" }}
-      sx={{ maxHeight: 550, justifyItems: "legacy", display: "flex" }}
-    >
-
-      <Grid id='grid-banner'  container  spacing={2}>
-        <Grid id='grid-info'  item style={{flexBasis: '70%'
-          , flexShrink: 0, height: '100%', position: 'relative', overflow: 'hidden', flexGrow: 0}} size={{xs: 12, sm: 8}}>
-          <Typography variant="h1"
-           
-           sx={{ justifyItems: "flex-start", ml: 7 }}>
-            <p
-              style={{ fontSize: 34, animation: "backwards" }}
-              id="title-typo"
-            >
+    <Grid id="grid-banner" container row sx={{}} spacing={2}>
+      <Grid
+        id="grid-info"
+        direction="column"
+        item
+        style={{
+          flexBasis: "70%",
+          flexShrink: 0,
+          height: "100%",
+          position: "relative",
+          overflow: "hidden",
+          flexGrow: 0,
+        }}
+      >
+        <Grid container gridRow={2}>
+          <Grid item xs={12}>
+            <Typography variant="h3" id="title-typo">
               {title}
-            </p>
+            </Typography>
+          </Grid>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography variant="h5" id="cate-typo">
+            {categorias}
           </Typography>
         </Grid>
-        <Grid id='grid-img' item style={{flexBasis: '30%', justifyContent: 'center'
-          , alignContent: 'center', position: 'relative', overflow: 'hidden', flexShrink: 0
-          , flexGrow: 0, padding: 0, }} size={{xs: 12, sm: 4}}>
-          <CardMedia
-            style={{objectFit: 'cover'
-              , width: '100%'
-              , height: '100%'
-              ,  objectPosition: 'center'}}
-            component="img"
-            image={"src/assets/Platos/" + img}
-          ></CardMedia>
+        <Grid item xs={12}>
+          <Box id="box-rating">
+            <Rating
+              id="rating"
+              value={clasificacion}
+              readOnly
+              size="large"
+              precision={0.5}
+              border={3}
+              emptyIcon={
+                <StarIcon
+                  style={{ opacity: 0.55, boxShadow: 5 }}
+                  fontSize="inherit"
+                />
+              }
+            />
+          </Box>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography
+            variant="h3"
+            id="precio-typo"
+            sx={{
+              height: "35%",
+              alignItems: "center",
+              justifyContent: "center",
+              ml: 7,
+            }}
+          >
+            {"$ " + precio}
+          </Typography>
         </Grid>
       </Grid>
-    </Card>
+
+      <Grid
+        id="grid-img"
+        item
+        style={{
+          flexBasis: "30%",
+          height: "100%",
+          padding: 0,
+        }}
+        size={{ xs: 12, sm: 4 }}
+      >
+        <CardMedia
+          style={{
+            height: "100%",
+            objectPosition: "center",
+          }}
+          component="img"
+          image={"src/assets/Platos/" + img}
+        ></CardMedia>
+      </Grid>
+    </Grid>
   );
 };
 

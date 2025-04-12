@@ -5,31 +5,47 @@
     padding: 0;
     box-sizing: border-box;
 }
-
-
-
-#nav-container{
-    align-items: center;
-    height: 150px;
-    width: 100%;
-    background-color: #360000 ;
-    float: left;
-    
-
-}
 span{
     font-family: 'Cairo', sans-serif;
 }
 
+#inicio:hover,
+#carta:hover,
+#reserva:hover,
+#comoLlegar:hover,
+#login:hover,
+#addPlato:hover{
+    border-color: #3E7B27;
+    border-style: solid;
+    border-inline-start-width: 10px;
+    
+}
+
+#inicio,
+#carta,
+#reserva,
+#comoLlegar,
+#login,
+#addPlato{
+    color: #F1F4F2;
+}
+
+/* 
+PALETA DE COLORES
+#123524
+#3E7B27
+#85A947
+#EFE3C2
+
+*/
+
 
 #appbar-nav{
-    background-color: #360000;
+    background-color: #123524 ;
     width: 100%;
 }
 
-.uk-navbar-nav{
-    margin-top: 25px;
-}
+
 
 .logo-brand .uk-container{
     position: relative;

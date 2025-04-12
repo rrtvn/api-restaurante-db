@@ -20,6 +20,7 @@ export const BaseRouter = () => {
                 <NavBar />
                 <Routes>
                     <Route path='/' element={<IndexPage />}></Route>
+                    <Route path='/inicio' element={<IndexPage />}></Route>
                     <Route path='/carta' element={<CartaPage />}></Route>
                     <Route path='/reserva' element={<ReservaPage />}></Route>
                     <Route path='/comoLlegar' element={<ComoLlegar />}></Route>

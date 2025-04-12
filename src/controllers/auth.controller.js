@@ -16,16 +16,16 @@ export const signInHandler = async (req, res, next) => {
 
         const { email, password } = req.body;
 
-        const userFound = await User.findOne({email: email });
+        const user = await User.findOne({email: email });
 
-        if (!userFound) {
+        if (!user) {
             return res.status(401).json({
                 token: null,
                 message: "User not found"
             });
         }
 
-        const recivedPassword = userFound.password;
+        const recivedPassword = user.password;
 
         const validarPassword = await User.comparePassword(
             password,
@@ -39,11 +39,11 @@ export const signInHandler = async (req, res, next) => {
             })
 
         }
-        const token = jwt.sign({ id: userFound._id }, SECRET, {
+        const token = jwt.sign({ id: user._id }, SECRET, {
             expiresIn: 86400, // 24 hours
         });
         console.log(token);
-        res.json({ token });
+        res.json({ token, user });
         // next({token});
 
     } catch (error) {

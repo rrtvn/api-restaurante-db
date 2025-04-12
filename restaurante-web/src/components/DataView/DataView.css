@@ -1,0 +1,22 @@
+/* DATAVIEW FORMATO */
+
+
+.p-dataview {
+    position: relative;
+}
+.p-grid{
+    width: 100%;
+
+}
+.data-platos .p-grid{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.p-dataview .p-dataview-content {
+    background-color: #dacfb1;
+    padding: 20px;
+}
+
+ 

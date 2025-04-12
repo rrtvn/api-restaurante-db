@@ -4,9 +4,11 @@
 #card-plato{
     position: relative;
     border-radius: 0.5rem;
-    border: 0.5px solid ;    
+    border: 3px solid ; 
+    border-color: #316049;   
     margin-bottom: 5px;
     box-shadow: 80%;
+    height: 320px;
 }
 #card-media-platos{
     width: 100%;
@@ -19,61 +21,33 @@
 #conteiner-card{
     height: 100%;
 }
-/*  */
-/*  */
-.card-conteiner{
-    width: 100%;
-    overflow: visible;
-    margin: 10px;
-    box-shadow: 0px 0px 15px -5px;
-    transition: 0.1s;
-    animation: ease-in-out;
-    background-color: red;
+
+#stack-content{
+    display: flexbox;
+
 }
-.card-media{
-    margin-top: 0.5rem;
-}
-.card-media img{
-    
-  width: size;
-  height: size; 
-  overflow: hidden;
-}
-.card-title{
-    margin: 1rem;
-    margin-bottom: 0.5rem;
-    border-bottom: 0px;
-}
-.card-content{
-    margin: 1rem;
-    margin-top: 0.5rem;
-    color: black;
-}
+/* LETRA CARD CATEGORIAS */
 p{
     margin: 0;
     padding: 40px;
     text-align: center;
     font-size: 1.2rem;
+}
+/* CONTENIDO DEL STACK */
 
+#typo-cate{
+    color: #316049;
 }
 
-.card-title{
-    margin-bottom: 0.5rem;
+#typo-descrip{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-.card-footer{
-    padding: 0.5rem;
-    transition: 0.2s;
-}
-/* TYPOGRAPHY TITLE CARDFOOD INDEX */
 
-#title-typo{
-    color: #f4f5f0;
-    text-transform: uppercase;
-    background-color: cadetblue;
-    background-size: auto;
-    font-style: oblique ;
-    padding-bottom: 1%;
-}
+
+/*  */
+
 
 .card-banner{
     height: 250px;
@@ -82,15 +56,20 @@ p{
 }
 
 #grid-banner{
-    
+    border-radius: 22px;
+    background-color: #316049;
     margin: 0px;
 }
 #grid-img{
     
-    max-height: 250px;
+    
 }
 #grid-info{
-    max-height: 250px;
-    padding: 0;
-    background-color: #AD8865;
+    flex-basis: "70%";
+    flex-shrink: 0;
+    height: "100%";
+    position: "relative";
+    overflow: "hidden";
+    flex-grow: 0;
 }
+

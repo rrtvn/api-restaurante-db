@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
 import { API_KEY } from '../../config';
@@ -12,8 +12,12 @@ const containerStyle = {
 };
 
 const center = {
-  lat: -32.9409205,
-  lng: -71.4153275,
+  lat: 0,
+  lng: -180,
+};
+const position = {
+  lat: -33.031963,
+  lng: -71.215367,
 };
 
 export const  MapsComponent = () => {
@@ -23,7 +27,7 @@ export const  MapsComponent = () => {
         googleMapsApiKey: API_KEY,
     })
 
-    const [map, setMap] = useState(null)
+    // const [map, setMap] = useState(null)
 
     const onLoad = useCallback(function callBack(map){
         const bounds = new window.google.maps.LatLngBounds(center);
@@ -32,21 +36,19 @@ export const  MapsComponent = () => {
         setMap(map)
     }, [])
 
-    const onUnmount = useCallback(function callBack(map) {
-        setMap(null)
-    }, [])
+    // const onUnmount = useCallback(function callBack(map) {
+    //     setMap(null)
+    // }, [])
 
 
   return isLoaded ? (
     <GoogleMap 
         mapContainerStyle={containerStyle}
-        center={center}
-        zoom={11}
-        onLoad={onLoad}
-        onUnmount={onUnmount}
+        center={position}
+        zoom={14}
         
     >
-    <Marker label={"Reserva Añañucas"} onLoad={setMap} onUnmount={onUnmount} position={center}></Marker>
+    {/* <Marker  onLoad={onLoad} position={position}></Marker> */}
     <></>
     </GoogleMap>
   ) : <></>    

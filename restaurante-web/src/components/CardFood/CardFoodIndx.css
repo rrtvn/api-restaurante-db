@@ -1,0 +1,57 @@
+
+/* TYPOGRAPHY TITLE CARDFOOD INDEX */
+
+#title-typo{
+    color: #f4f5f0;
+    text-align: right;
+    text-transform: uppercase;
+    background-color: #3E7B27;
+    font-style: oblique ;
+    padding-bottom: 1%;
+    margin-right: 25px;
+    padding-right: 25px;
+    align-items: flex-end;
+    border-top-right-radius: 36px;
+    border-bottom-left-radius: 36px;
+}
+#cate-typo{
+    color: #c1c2c1;
+    text-align: right;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding-bottom: 1%;
+    margin-right: 25px;
+    margin-top: 12px;
+    padding-right: 25px;
+    align-items: flex-end;
+}
+
+#precio-typo{
+    color: #f4f5f0;
+    text-align: right;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding-bottom: 1%;
+    margin-right: 25px;
+    padding-right: 25px;
+    align-items: flex-end;
+}
+
+#rating{
+    text-align: right;
+    align-items: flex-end;
+    padding-right: 25px;
+}
+#box-rating{
+    text-align: right;
+    align-items: flex-end;
+    padding-right: 25px;
+}
+
+#grid-banner{
+    
+    height: 320px;
+    padding: 50px; 
+    box-shadow: salmon, 0px 0px 10px 0px;
+}
+
